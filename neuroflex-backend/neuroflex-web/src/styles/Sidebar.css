@@ -1,0 +1,205 @@
+/* Sidebar.css */
+
+.sidebar {
+  position: fixed;
+  top: 63px; /* Assuming your navbar height */
+  left: -280px;
+  width: 280px;
+  height: calc(100% - 63px);
+  background-color: #fff; /* White background */
+  color: #333; /* Default text color (dark gray) */
+  transition: left 0.3s ease-in-out;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee; /* Light gray separator */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* White background for header too */
+  z-index: 1101;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28a745; /* Keep the logo color */
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.sidebar-logo .logo-image {
+  height: 24px;
+  margin-right: 10px;
+}
+
+.sidebar-logo span {
+  color: #194b45; /* Your theme green color for "NEUROFLEX" text */
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.sidebar-list li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee; /* Light gray separator */
+}
+
+.sidebar-list li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-list li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #194b45; /* Your theme green color for list items */
+  font-size: 1rem;
+  transition: color 0.2s ease, background-color 0.1s ease;
+}
+
+.sidebar-list li a:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* Very light gray on hover */
+  color: #c3a36b; /* The color you specified for hover (text) */
+}
+
+.sidebar-list li a:hover svg {
+  color: #c3a36b; /* Apply the hover color to the icons */
+}
+
+.sidebar-list li a svg {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  color: #194b45; /* Theme green color for icons */
+  transition: color 0.2s ease; /* Add transition for icon color */
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}/* Sidebar.css */
+
+.sidebar {
+    position: fixed;
+    top: 63px; /* Adjust if your navbar height is different */
+    left: -280px;
+    width: 280px;
+    height: calc(100% - 63px);
+    background-color: #fff; /* White background */
+    color: #333; /* Default text color */
+    transition: left 0.3s ease-in-out;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align logo to the left */
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1101;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.sidebar-logo .logo-image {
+    height: 24px;
+    margin-right: 10px;
+}
+
+.sidebar-logo span {
+    color: #194b45;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.sidebar-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-list li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-list li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #194b45;
+    font-size: 1rem;
+    transition: color 0.2s ease, background-color 0.1s ease;
+}
+
+.sidebar-list li a:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: #c3a36b;
+}
+
+.sidebar-list li a svg {
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: #194b45;
+    transition: color 0.2s ease;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}

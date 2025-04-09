@@ -1,0 +1,108 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #f8f9fa; /* Light background */
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed; /* To stay at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.menu-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333; /* Adjust color */
+  /* display: none; /* Removed to show on larger screens */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #194b45; /* Green color from the logo */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo img {
+  height: 30px; /* Adjust logo size */
+  margin-right: 10px;
+}
+
+.logo span {
+  color: #343a40; /* Darker text for "NEUROFLEX" */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links li:first-child {
+  margin-left: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #343a40; /* Dark text for links */
+  font-weight: 500;
+}
+
+.consultation-btn {
+  background-color: #194b45; /* Darker green button color from image */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Brown Line */
+.navbar-underline {
+  height: 4px; /* Adjust thickness as needed */
+  background-color: #a67c00; /* Brown color from the image */
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+
+/* Responsive Styles (for smaller screens - showing the hamburger) */
+@media (max-width: 768px) {
+  .menu-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333; /* Adjust color */
+      display: none; /* Hidden on larger screens */
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .consultation-btn {
+    display: none;
+  }
+}

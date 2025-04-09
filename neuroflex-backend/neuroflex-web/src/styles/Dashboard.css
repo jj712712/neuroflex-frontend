@@ -1,0 +1,25 @@
+
+.dashboard-container {
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+}
+
+.dashboard-sections {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #c3a36b;
+  color: #194b45;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}

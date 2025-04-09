@@ -1,0 +1,122 @@
+/* SelfAssmnt.css - Based on a hypothetical "MT" theme (adjust colors as needed) */
+
+.self-assmnt-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font */
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  h2 {
+    color: #343a40; /* Dark gray heading */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    color: #495057; /* Medium gray label */
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  select,
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 4px;
+    font-size: 16px;
+    color: #495057;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  select:focus,
+  input[type="number"]:focus {
+    border-color: #007bff; /* Theme primary color */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Theme primary color shadow */
+  }
+  
+  select option {
+    font-size: 16px;
+    color: #495057;
+  }
+  
+  button[type="submit"],
+  .assessment-results button {
+    background-color: #007bff; /* Theme primary color */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  button[type="submit"]:hover,
+  .assessment-results button:hover {
+    background-color: #0056b3; /* Darker shade of theme primary */
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #6c757d; /* Disabled button color */
+    cursor: not-allowed;
+  }
+  
+  .assessment-results {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #e9ecef; /* Light gray result background */
+  }
+  
+  .assessment-results h3 {
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .assessment-results p {
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .assessment-results .disclaimer {
+    font-size: 0.9em;
+    color: #6c757d;
+    font-style: italic;
+  }
+  
+  .progress-bar-container {
+    background-color: #e0e0e0; /* Light gray progress bar background */
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    background-color: #28a745; /* Theme success color for progress */
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 4px;
+    width: 0%; /* Initial width */
+    transition: width 0.3s ease-in-out;
+    font-size: 0.8em;
+  }
+  
+  /* You might have more specific elements or variations in your "MT" theme */
+  /* Adjust colors, fonts, and spacing as needed to match your theme */

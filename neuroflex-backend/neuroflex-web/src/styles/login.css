@@ -1,0 +1,226 @@
+/* src/styles/login.css */
+
+.login-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: calc(100vh - /* Height of your navbar */ 60px); /* Adjust navbar height */
+    background: linear-gradient(to right, #194b45, rgba(51, 119, 107, 0.9));
+    color: #333; /* Default text color */
+    padding: 20px;
+  }
+  
+  .login-logo {
+    font-size: 2.5rem;
+    color: #333; /* Black logo text */
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .login-welcome {
+    font-size: 2rem;
+    color: #555; /* Darker gray welcome text */
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  .login-form-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 350px;
+  }
+  
+  .login-form-title {
+    display: none;
+  }
+  
+  .login-form-group {
+    margin-bottom: 25px;
+  }
+  
+  .login-form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .login-form-input-wrapper {
+    position: relative;
+  }
+  
+  .login-form-input {
+    width: 100%;
+    padding: 12px 35px 12px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333; /* Black input text */
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .login-form-input:focus {
+    border-color: #c3a36b;
+  }
+  
+  .login-form-input-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .login-form-submit-button {
+    width: 100%;
+    background-color: #c3a36b;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form-submit-button:hover {
+    background-color: #b0925d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .login-form-forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    color: #555; /* Dark gray forgot password link */
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  
+  .login-form-forgot-password:hover {
+    text-decoration: underline;
+    color: #c3a36b;
+  }
+  
+  .login-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #777; /* Darker gray separator text */
+    margin: 25px 0;
+  }
+  
+  .login-separator::before,
+  .login-separator::after {
+    content: '';
+    flex-grow: 1;
+    background-color: #ddd;
+    height: 1px;
+    margin: 0 15px;
+  }
+  
+  .login-social-button {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333; /* Black social button text */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-social-button:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .login-social-icon {
+    margin-right: 10px;
+    color: #4285f4;
+  }
+  
+  .login-signup-link {
+    text-align: center;
+    margin-top: 30px;
+    color: #777; /* Dark gray signup link text */
+  }
+  
+  .login-signup-link-a {
+    color: #c3a36b;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-signup-link-a:hover {
+    text-decoration: underline;
+    color: #c3a36b;
+  }
+  
+  .login-form-error-message {
+    color: #dc3545; /* Red error message */
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .login-form-success-message {
+    color: #28a745; /* Green success message */
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .login-form-container {
+      padding: 25px;
+      border-radius: 8px;
+    }
+  
+    .login-logo {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+  
+    .login-welcome {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+  
+    .login-form-group {
+      margin-bottom: 20px;
+    }
+  
+    .login-form-submit-button {
+      font-size: 1rem;
+      padding: 12px;
+      margin-top: 20px;
+    }
+  
+    .login-separator {
+      margin: 20px 0;
+    }
+  
+    .login-social-button {
+      font-size: 0.9rem;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .login-signup-link {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+  }

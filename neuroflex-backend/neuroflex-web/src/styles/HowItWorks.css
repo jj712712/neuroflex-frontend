@@ -1,0 +1,160 @@
+/* src/styles/HowItWorks.css */
+
+/* Define your color and font variables */
+:root {
+    --primary-green: #194b45;
+    --secondary-sand: #c3a36b;
+    --text-dark: #333;
+    --text-light: #777;
+    --bg-light: #f4f4f4;
+    --bg-lighter: #f9f9f9;
+    --white: #fff;
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Open Sans', sans-serif;
+}
+
+.how-it-works-page {
+    padding-top: 40px;
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Hero Section (Keep existing styles) */
+.hero {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero .container {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-family: var(--heading-font);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.hero .lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Steps Section */
+.steps {
+    padding: 40px 0;
+    background-color: var(--white);
+    text-align: center; /* Center the overall grid */
+}
+
+.steps h2 {
+    font-family: var(--heading-font);
+    font-size: 1.8rem;
+    color: var(--primary-green);
+    margin-bottom: 30px;
+}
+
+.steps-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center items horizontally */
+    gap: 20px;
+    padding: 20px;
+}
+
+.step-item {
+    background-color: var(--bg-lighter);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    text-align: center;
+    width: 180px; /* Adjust card width for smaller size */
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+
+.step-icon {
+    font-size: 2rem; /* Smaller icon size */
+    color: var(--primary-green);
+    margin-bottom: 8px;
+}
+
+.step-title {
+    font-family: var(--heading-font);
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.step-description {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* FAQ Section (Keep existing styles) */
+.faq {
+    padding: 40px 0;
+    background-color: var(--secondary-sand);
+    color: var(--white);
+    text-align: center;
+}
+
+.faq h2 {
+    font-family: var(--heading-font);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.faq-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.faq-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--primary-green);
+}
+
+.faq-item p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Responsive Design (Adjust as needed) */
+@media (max-width: 768px) {
+    .steps-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step-item {
+        width: 80%;
+        max-width: 250px;
+        margin-bottom: 15px;
+    }
+}
