@@ -2,42 +2,124 @@
 
 .welcome-container {
   text-align: center;
-  background: linear-gradient(to right, #194b45, rgba(51, 119, 107, 0.9));
+  background: linear-gradient(135deg, #194b45, #33776b); /* Angled gradient */
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #f0f8f5; /* Off-white for better contrast */
+  padding: 20px; /* Add some padding around the container */
+  box-sizing: border-box; /* Ensure padding doesn't affect height */
 }
 
 .welcome-content {
-  max-width: 600px;
+  max-width: 1000px;
+  padding: 50px; /* More padding inside the content area */
+  border-radius: 10px; /* Soft rounded corners for content box */
+  /* Subtle background overlay for better text readability on the gradient */
+  background-color: rgba(130, 129, 129, 0.1);
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
+.title {
+  font-size: 2.8rem;
+  color: white; /* Ensuring h1 is white */
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: -0.05em; /* Slightly tighter letter spacing */
+  text-shadow: 1px 1px 2px rgba(228, 223, 223, 0.2); /* Subtle text shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
 }
 
 .subtitle {
   font-style: italic;
-  color: #c3a36b;
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+  font-family: 'Georgia', serif; /* More elegant italic font */
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-family: 'Open Sans', sans-serif; /* Readable sans-serif font */
+}
+
+.welcome-buttons {
+  /* You can add more styling to the button container if needed */
 }
 
 .start-btn {
-  background: #c3a36b;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-weight: bold;
+  background: #bca071;
+  color: white; /* Dark text on the gold button */
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: 600; /* Semi-bold */
   text-decoration: none;
-  margin-top: 20px;
+  margin-top: 25px;
   display: inline-block;
-  transition: 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Added box-shadow transition */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More noticeable initial shadow */
+  font-family: 'Montserrat', sans-serif; /* Modern, bold sans-serif for button */
+  position: relative; /* Needed for pseudo-element */
+  overflow: hidden; /* Clip the pseudo-element */
+  z-index: 1; /* Ensure text is above pseudo-element */
+}
+
+.start-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, #f0f8f5, #c3a36b); /* Highlight effect */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: scale(1.2); /* Start slightly larger */
+  z-index: -1; /* Behind the text */
 }
 
 .start-btn:hover {
-  background: white;
-  color: #c3a36b;
+  background: #c3a36b; /* Keep the gold background on hover */
+  color: #194b45;
+  transform: translateY(-2px); /* Slight vertical lift */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
 }
+
+.start-btn:hover::before {
+  opacity: 0.6; /* Fade in the highlight */
+  transform: scale(1); /* Return to normal size */
+}
+
+.start-btn:active {
+  transform: translateY(0); /* Push down slightly on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Smaller shadow when active */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .welcome-content {
+    padding: 20px;
+  }
+  .start-btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Import any required web fonts in this file */
+/* Example for Google Fonts: */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&family=Georgia:ital@1&family=Segoe+UI&display=swap'); */

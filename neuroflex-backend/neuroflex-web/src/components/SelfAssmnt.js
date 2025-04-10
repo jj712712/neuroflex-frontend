@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './SelfAssmnt.css';
-import { useNavigate } from 'react-router-dom';
+ import './SelfAssmnt.css';
+ import { useNavigate } from 'react-router-dom';
 
-const SelfAssmnt = () => {
+ const SelfAssmnt = () => {
   const [primaryConcern, setPrimaryConcern] = useState('');
 
   // Focus & Attention
@@ -120,7 +120,7 @@ const SelfAssmnt = () => {
     }
 
     setAssessmentResult(JSON.stringify({ rawResponses: formData, engineeredFeatures }, null, 2));
-    setRecommendations(recommendation + ' This is a preliminary self-assessment and not a clinical diagnosis. A comprehensive evaluation by a qualified professional is essential for accurate diagnosis and personalized recommendations.');
+    setRecommendations(result + ' ' + recommendation + ' This is a preliminary self-assessment and not a clinical diagnosis. A comprehensive evaluation by a qualified professional is essential for accurate diagnosis and personalized recommendations.');
   };
 
   const handleFormSubmit = (e) => {
@@ -304,7 +304,6 @@ const SelfAssmnt = () => {
                 <option value="">Select</option>
                 <option value="rarely">Rarely</option>
                 <option value="sometimes">Sometimes</option>
-                <option value="often">Often</option>
                 <option value="veryOften">Very Often</option>
               </select>
             </div>
@@ -329,3 +328,4 @@ const SelfAssmnt = () => {
 };
 
 export default SelfAssmnt;
+                

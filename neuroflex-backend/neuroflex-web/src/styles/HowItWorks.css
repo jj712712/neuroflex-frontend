@@ -41,12 +41,14 @@
 
 .hero h1 {
     font-family: var(--heading-font);
+    color: var(--white);
     font-size: 2.2rem;
     margin-bottom: 10px;
 }
 
 .hero .lead {
     font-size: 1.1rem;
+    color: var(--white);
     line-height: 1.6;
     opacity: 0.9;
 }
