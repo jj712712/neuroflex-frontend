@@ -1,0 +1,253 @@
+/* src/components/TherapistPatientsList.css */
+
+.patients-list-container {
+  padding: 40px 20px;
+  max-width: 1000px; /* Increased max-width for more content */
+  margin: 80px auto;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.patients-list-container h2 {
+  text-align: center;
+  color: #194b45;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.loading-message, .error-message, .no-patients-message {
+  text-align: center;
+  font-size: 1.1em;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.loading-message {
+  background-color: #e0f2f7;
+  color: #0d6b62;
+}
+
+.error-message {
+  background-color: #fce4e4;
+  color: #d32f2f;
+}
+
+.no-patients-message {
+  background-color: #fff9e0;
+  color: #a07800;
+}
+
+.patients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.patient-card {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  align-items: flex-start; /* Align items to the top */
+  justify-content: space-between;
+  padding: 25px; /* Increased padding */
+  margin-bottom: 20px; /* Increased margin */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 20px; /* Space between flex items */
+}
+
+.patient-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f2fafa;
+}
+
+.patient-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1 1 300px; /* Allows flexibility, min-width 300px */
+}
+
+.patient-profile-pic, .patient-profile-pic-placeholder {
+  width: 80px; /* Slightly larger */
+  height: 80px; /* Slightly larger */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #c3a36b; /* Thicker border */
+  flex-shrink: 0;
+}
+
+.patient-profile-pic-placeholder {
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em; /* Larger text */
+  color: #888;
+  font-weight: bold;
+}
+
+.patient-details {
+  flex-grow: 1;
+}
+
+.patient-details h3 {
+  margin: 0 0 8px 0;
+  color: #194b45;
+  font-size: 1.6em; /* Slightly larger */
+}
+
+.patient-details p {
+  margin: 4px 0; /* Adjusted margin */
+  color: #555;
+  font-size: 0.98em; /* Slightly larger */
+}
+
+.patient-overview {
+  flex: 1 1 350px; /* Allows flexibility, min-width 350px */
+  background-color: #f2f7f7; /* Light background for overview */
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #e9e9e9;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.overview-item {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  color: #444;
+}
+
+.overview-item:last-child {
+  margin-bottom: 0;
+}
+
+.overview-item strong {
+  color: #194b45;
+  margin-right: 5px;
+}
+
+.assessment-status {
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.assessment-status.completed {
+  background-color: #e6ffe6;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.assessment-status.pending {
+  background-color: #fff3e0;
+  color: #ff9800;
+  border: 1px solid #ff9800;
+}
+
+.patient-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 12px; /* Space between buttons */
+  flex: 0 0 150px; /* Fixed width for actions */
+  align-items: flex-end; /* Align buttons to the right */
+}
+
+.patient-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* Make buttons full width in their flex container */
+  max-width: 150px; /* Max width for buttons */
+}
+
+.view-profile-button {
+  background-color: #33776b;
+  color: white;
+}
+
+.view-profile-button:hover {
+  background-color: #194b45;
+  transform: translateY(-1px);
+}
+
+.message-button {
+  background-color: #c3a36b;
+  color: white;
+}
+
+.message-button:hover {
+  background-color: #a38c5b;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .patient-card {
+    flex-direction: column;
+    align-items: center; /* Center items when stacked */
+    text-align: center;
+  }
+
+  .patient-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .patient-details {
+    width: 100%; /* Ensure full width for text */
+  }
+
+  .patient-overview {
+    width: 100%;
+    margin-top: 15px;
+    text-align: left; /* Keep text left-aligned in overview */
+  }
+
+  .patient-actions {
+    width: 100%;
+    align-items: center; /* Center buttons when stacked */
+    margin-top: 15px;
+  }
+
+  .patient-actions button {
+    max-width: 200px; /* Adjust button max-width for better fit */
+  }
+}
+
+@media (max-width: 480px) {
+  .patients-list-container {
+    padding: 20px 10px;
+  }
+
+  .patient-card {
+    padding: 15px;
+  }
+
+  .patient-profile-pic, .patient-profile-pic-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+
+  .patient-details h3 {
+    font-size: 1.3em;
+  }
+
+  .patient-details p, .overview-item {
+    font-size: 0.9em;
+  }
+}

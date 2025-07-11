@@ -1,38 +1,16 @@
-.App {
-  text-align: center;
+/* /* src/styles/App.css */
+
+/* This targets the main content area, behind your specific page components */
+.content-wrapper {
+    min-height: calc(100vh - 60px - 120px); /* Example: 100vh minus navbar and footer height */
+    /* This is the gradient that results in a solid #688580 color */
+    background: linear-gradient(135deg, #688580, #688580); 
+    padding: 20px; /* Add some padding around your page content */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Ensure html, body, and #root take full height for the background to cover the entire viewport */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* You might want to ensure the Navbar and Footer match the gradient as well, as per previous instructions */
+/* Navbar and Footer styling (example - adjust classes as needed) */

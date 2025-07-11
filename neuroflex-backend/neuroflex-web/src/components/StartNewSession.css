@@ -1,0 +1,162 @@
+/* src/components/StartNewSession.css */
+
+.start-new-session-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  border-radius: 0.5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 100px;
+  background: linear-gradient(135deg, #688580, #688580);
+  color: #f0f8f5;
+  box-sizing: border-box;
+  margin: 0 auto 60px auto;
+  position: relative;
+  animation: slideIn 0.5s ease-out;
+  transform-origin: top;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* .start-new-session-header {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+} */
+
+
+.start-new-session-content {
+  width: 80%;
+  max-width: 700px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.start-new-session-content h1 {
+  color: #194b45;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.start-new-session-content p {
+  color: #333;
+}
+
+.start-new-session-button {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background: #c3a36b;
+  box-shadow: 0 4px 6px rgba(195, 163, 107, 0.5);
+  transform: translateY(-2px);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 10px 220px;
+}
+
+.start-new-session-button:hover {
+  background-color: #bca071;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(195, 163, 107, 0.7);
+}
+
+.start-new-session-button.primary {
+  background-color: #194b45;
+  box-shadow: 0 4px 6px rgba(25, 75, 69, 0.5);
+}
+
+.start-new-session-button.primary:hover {
+  background-color: #133833;
+  box-shadow: 0 8px 12px rgba(25, 75, 69, 0.7);
+}
+
+.start-new-session-button.success {
+  background-color: #28a745;
+  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.5);
+}
+
+.start-new-session-button.success:hover {
+  background-color: #218838;
+  box-shadow: 0 8px 12px rgba(40, 167, 69, 0.7);
+}
+
+.start-new-session-button.warning {
+  background-color: #dc3545;
+  box-shadow: 0 4px 6px rgba(220, 53, 69, 0.5);
+}
+
+.start-new-session-button.warning:hover {
+  background-color: #c82333;
+  box-shadow: 0 8px 12px rgba(220, 53, 69, 0.7);
+}
+
+.connecting-message {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #194b45;
+}
+
+.device-connected-message {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #28a745;
+}
+
+.concerns-display {
+  font-size: 1.1em;
+  margin-top: 10px;
+  color: #343a40;
+}
+
+.feedback-section {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  text-align: left;
+}
+
+.feedback-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #194b45;
+  text-align: center;
+}
+
+.feedback-section p {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #555;
+}

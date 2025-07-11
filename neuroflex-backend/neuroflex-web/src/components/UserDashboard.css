@@ -1,0 +1,119 @@
+/* src/components/UserDashboard.css */
+
+.user-dashboard-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: calc(100vh - 60px); /* Ensure it fills the viewport minus navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; /* Push content below fixed navbar */
+  background: linear-gradient(135deg, #688580, #688580); /* Light background color */
+  color: #333; /* Dark text for better readability on light background */
+  transform-origin: top;
+}
+
+.dashboard-header {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: flex-end; /* Align user info to the right */
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* .user-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 15px;
+  border: 2px solid #c3a36b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #194b45; /* Primary theme color for username */
+  /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); */
+/* } */ 
+
+  .dashboard-content {
+    width: 60%;
+    max-width: 950px;
+    overflow-y: auto; /* Added vertical scrollbar */
+    text-align: left;
+    padding: 10px; /* Increased padding for better spacing */
+    background-color: white; /* Changed background color */
+    border-radius: 25px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    color: #f0f8f5; /* Changed text color */
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    margin-bottom: 20px; /* Add some margin at the bottom */
+  }
+
+.dashboard-content h1 {
+  color: #194b45; /* Primary theme color for heading */
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Add this line to center the text */
+}
+
+.welcome-message {
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #33776b; /* Secondary theme color for welcome */
+}
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive button grid */
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.dashboard-button {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  background: #c3a36b; /* Primary button color */
+  box-shadow: 0 4px 6px rgba(195, 163, 107, 0.5);
+  transform: translateY(-2px); /* Slight lift */
+  text-decoration: none; /* Remove underlines from links */
+  text-align: center; /* Center button text */
+  display: inline-flex; /* Use flex to center content */
+  align-items: center; /* Vertically align items */
+  justify-content: center; /* Horizontally align items */
+}
+
+.dashboard-button:hover {
+  transform: translateY(-5px); /* More pronounced lift on hover */
+  box-shadow: 0 8px 12px rgba(195, 163, 107, 0.7);
+}
+
+.dashboard-button.info {
+  background-color: #bca071;
+  box-shadow: 0 4px 6px rgba(188, 160, 113, 0.5);
+}
+
+.dashboard-footer {
+  width: 100%;
+  margin-top: 50px;
+}
+

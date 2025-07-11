@@ -1,7 +1,7 @@
 // src/components/PrivateRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom'; // Make sure 'Navigate' is correctly imported
-import { auth } from '../firebase';
+import { auth } from '../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth'; // Recommended way to track auth state
 
 const PrivateRoute = ({ children }) => {

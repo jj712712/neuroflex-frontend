@@ -83,19 +83,19 @@
   left: 0;
  }
 
- .consultation-btn {
+ /* .consultation-btn {
   background-color: #194b45; /* Darker green button color from image */
-  color: white;
+  /* color: white;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
- }
+ /* } */ */
 
  .consultation-btn:hover {
   background-color: #133631; /* Darker shade on hover */
- }
+  } 
 
  /* Logout Button Styling */
  .nav-links li button.logout-btn {

@@ -1,125 +1,366 @@
-/* src/styles/Welcome.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&family=Georgia:ital@1&family=Segoe+UI&display=swap');
 
+/* --- Welcome Section --- */
 .welcome-container {
-  text-align: center;
-  background: linear-gradient(135deg, #194b45, #33776b); /* Angled gradient */
-  height: 100vh;
+  background:linear-gradient(135deg, #688580, #688580);
+  min-height: calc(100vh - 60px - 150px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: #f0f8f5; /* Off-white for better contrast */
-  padding: 20px; /* Add some padding around the container */
-  box-sizing: border-box; /* Ensure padding doesn't affect height */
+  justify-content: flex-start;
+  color: #f0f8f5;
+  padding: 60px 20px 40px;
+  box-sizing: border-box;
+  transform-origin: top;
 }
 
 .welcome-content {
   max-width: 1000px;
-  padding: 50px; /* More padding inside the content area */
-  border-radius: 10px; /* Soft rounded corners for content box */
-  /* Subtle background overlay for better text readability on the gradient */
-  background-color: rgba(130, 129, 129, 0.1);
+  padding: 60px;
+  border-radius: 12px;
+  background-color: #466e6a;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .title {
-  font-size: 2.8rem;
-  color: white; /* Ensuring h1 is white */
+  font-size: 3.2rem;
   font-weight: 700;
-  margin-bottom: 15px;
-  letter-spacing: -0.05em; /* Slightly tighter letter spacing */
-  text-shadow: 1px 1px 2px rgba(228, 223, 223, 0.2); /* Subtle text shadow */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  letter-spacing: -0.06em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid #f0f8f5;
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #f0f8f5 }
 }
 
 .subtitle {
   font-style: italic;
-  color: white;
-  font-size: 1.3rem;
-  margin-bottom: 25px;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-  font-family: 'Georgia', serif; /* More elegant italic font */
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  font-family: 'Georgia', serif;
+  color: #e0f2f7;
 }
 
-p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 30px;
-  font-family: 'Open Sans', sans-serif; /* Readable sans-serif font */
+.hero-description {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  font-family: 'Open Sans', sans-serif;
+  color: #e0f2f7;
 }
 
 .welcome-buttons {
-  /* You can add more styling to the button container if needed */
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
 }
 
-.start-btn {
+.signup-btn-style {
   background: #bca071;
-  color: white; /* Dark text on the gold button */
+  color: #333;
   padding: 14px 30px;
   border-radius: 30px;
-  font-weight: 600; /* Semi-bold */
+  font-weight: 600;
   text-decoration: none;
-  margin-top: 25px;
   display: inline-block;
-  transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Added box-shadow transition */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More noticeable initial shadow */
-  font-family: 'Montserrat', sans-serif; /* Modern, bold sans-serif for button */
-  position: relative; /* Needed for pseudo-element */
-  overflow: hidden; /* Clip the pseudo-element */
-  z-index: 1; /* Ensure text is above pseudo-element */
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  letter-spacing: 0.02em;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.start-btn::before {
+.signup-btn-style::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom right, #f0f8f5, #c3a36b); /* Highlight effect */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom right, #f0f8f5, #d4b383);
   opacity: 0;
+  transform: scale(1.1);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transform: scale(1.2); /* Start slightly larger */
-  z-index: -1; /* Behind the text */
+  z-index: -1;
 }
 
-.start-btn:hover {
-  background: #c3a36b; /* Keep the gold background on hover */
+.signup-btn-style:hover {
+  background: #c3a36b;
   color: #194b45;
-  transform: translateY(-2px); /* Slight vertical lift */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.start-btn:hover::before {
-  opacity: 0.6; /* Fade in the highlight */
-  transform: scale(1); /* Return to normal size */
+.signup-btn-style:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.start-btn:active {
-  transform: translateY(0); /* Push down slightly on click */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Smaller shadow when active */
+/* --- Global Section Backgrounds --- */
+.features-section,
+.how-it-works-section,
+.benefits-section,
+.call-to-action-section {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  margin: 40px auto;
+  max-width: 1200px;
+  text-align: center;
+  border-radius: 16px;
 }
 
-/* Responsive adjustments */
+/* --- Section Headings --- */
+.features-section h2,
+.how-it-works-section h2,
+.benefits-section h2,
+.call-to-action-section h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #194b45;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+ h3 {
+  color: #194b45;
+}
+
+/* --- Features Grid --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.feature-item {
+  background-color: white;
+  padding: 30px;
+  border-radius: 16px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid #bca071; /* Thin brown border for all key features */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+/* --- Centered Hover Style for Top Feature --- */
+.feature-item:nth-child(1) {
+  grid-column: span 2;
+  justify-self: center;
+}
+
+/* --- How It Works Section --- */
+.how-it-works-section {
+  text-align: center;
+  
+}
+
+.how-it-works-steps {
+  display: flex; /* Changed to flex */
+  justify-content: center; /* Center items */
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Enable wrapping */
+}
+
+.step {
+  background-color: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #bca071; /* Thin brown border for How It Works */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Added transition for hover */
+  text-align: center;
+  flex-basis: calc(33.33% - 60px); /* Adjust basis for 3 items with gap */
+  box-sizing: border-box;
+}
+
+.step:hover {
+  transform: scale(1.05); /* Apply the scale hover effect */
+  box-shadow: 0 20px 30px rgba(0,0,0,0.15); /* Apply the shadow hover effect */
+  z-index: 2; /* Ensure it's above other elements on hover */
+}
+
+.step-icon {
+  max-width: 50px;
+  color: #33776b; /* Set the desired green color */
+  transition: transform 0.2s ease-in-out;
+}
+
+.step:hover .step-icon {
+  transform: scale(1.1);
+}
+
+.step h3 {
+  font-size: 1.6rem;
+  color: #33776b;
+  margin-bottom: 15px;
+}
+
+.step p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 0;
+}
+
+/* --- Learn More Button (like signup) --- */
+.learn-more-btn {
+  composes: signup-btn-style;
+  margin-top: 30px;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+}
+
+/* --- Benefits Section --- */
+.benefits-section {
+  text-align: center;
+}
+
+.benefits-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.benefit-item {
+  background-color: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex-basis: calc(33.33% - 30px);
+  box-sizing: border-box;
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Added transition for hover */
+  border: 1px solid #bca071; /* Thin brown border for Benefits */
+}
+
+.benefit-item:hover {
+  transform: scale(1.05); /* Apply the scale hover effect */
+  box-shadow: 0 20px 30px rgba(0,0,0,0.15); /* Apply the shadow hover effect */
+  z-index: 2; /* Ensure it's above other elements on hover */
+}
+
+.benefit-icon {
+  max-width: 50px;
+  margin-bottom: 15px;
+  color: #33776b; /* Set the desired green color */
+}
+
+.benefit-item h3 {
+  font-size: 1.4rem;
+  color: #33776b;
+  margin-bottom: 10px;
+}
+
+.benefit-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 0;
+}
+
+
+
+
+/* --- Call to Action Section --- */
+
+.call-to-action-section {
+  max-width: 1000px;
+  padding: 30px; /* Match .benefit-item padding */
+  border-radius: 16px; /* Match .benefit-item border-radius */
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match .benefit-item box-shadow */
+  border: 1px solid #bca071; /* Match .benefit-item border */
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Match .benefit-item transition */
+}
+
+.call-to-action-section:hover {
+  transform: scale(1.05); /* Match .benefit-item:hover transform */
+  box-shadow: 0 20px 30px rgba(0,0,0,0.15); /* Match .benefit-item:hover box-shadow */
+  z-index: 2; /* Match .benefit-item:hover z-index */
+}
+
+.call-to-action-section p {
+  font-size: 1.3rem;
+  margin: 10px auto;
+}
+
+.call-to-action-section i {
+  font-size: 50px; /* Adjust this value to match the benefit-icon size */
+  color: #33776b; /* Match the benefit-icon color if desired */
+  margin-bottom: 15px; /* Match the margin-bottom of benefit-icon */
+  display: block; /* Ensure the icon takes its own line */
+}
+.call-to-action-section .signup-link.signup-btn-style.cta-signup-btn {
+  /* Inherits signup-btn-style */
+}
+
+.call-to-action-section .signup-link.signup-btn-style.cta-signup-btn:hover {
+  background: #c3a36b;
+  color: #194b45;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.call-to-action-section .signup-link.signup-btn-style.cta-signup-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Responsive Tweaks --- */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.4rem;
+  .welcome-content { padding: 30px; margin-top: 15px; margin-bottom: 30px; }
+  .welcome-buttons { flex-direction: column; align-items: center; }
+  .features-grid,
+  .how-it-works-steps {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+    flex-direction: column; /* Also stack in flexbox */
+    align-items: center; /* Center items */
   }
-  .subtitle {
-    font-size: 1.1rem;
+  .step {
+    flex-basis: auto; /* Take full width */
+    margin-bottom: 20px;
   }
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
+  .features-section h2,
+  .how-it-works-section h2,
+  .benefits-section h2,
+  .call-to-action-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
-  .welcome-content {
-    padding: 20px;
+  .benefits-grid {
+    flex-direction: column;
+    align-items: center;
   }
-  .start-btn {
-    padding: 12px 24px;
-    font-size: 0.95rem;
+  .benefit-item {
+    flex-basis: auto;
+    margin-bottom: 20px;
   }
 }
-
-/* Import any required web fonts in this file */
-/* Example for Google Fonts: */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&family=Georgia:ital@1&family=Segoe+UI&display=swap'); */

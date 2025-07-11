@@ -4,134 +4,293 @@
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    min-height: calc(100vh - /* Height of your navbar */ 60px); /* Adjust navbar height */
-    background: linear-gradient(to right, #194b45, rgba(51, 119, 107, 0.9));
-    color: #333; /* Default text color */
+    min-height: calc(100vh - 60px); /* Adjust navbar height */
+    background: linear-gradient(135deg, #688580, #688580); /* Theme gradient */
+    color: #f0f8f5; /* Light text color for theme background */
     padding: 20px;
-  }
-  
-  .signup-form-container {
-    background-color: rgba(255, 255, 255, 0.85);
+    box-sizing: border-box;
+    transform-origin: top;
+}
+
+.signup-form-container {
+    background-color: #f0f8f5; /* Changed to #f0f8f5 */
     padding: 30px;
+    margin-top: 65px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 350px;
-  }
-  
-  .signup-form-title {
+    max-width: 450px; /* Slightly increased max-width for more fields */
+}
+
+.signup-form-title {
     font-size: 2.5rem;
-    font-weight: bold;
-    text-center: center;
-    color: #333; /* Black title text */
+    font-weight: 700;
+    text-align: center;
+    color: #466e6a; /* Changed to #466e6a */
     margin-bottom: 30px;
-  }
-  
-  .signup-form-group {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: -0.04em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow for lighter background */
+}
+
+.signup-form-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #466e6a; /* Changed to #466e6a */
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Styles for the role selection prompt when a role hasn't been chosen yet */
+.role-prompt {
+    text-align: center;
     margin-bottom: 25px;
-  }
-  
-  .signup-form-label {
+    color: #466e6a; /* Adjusted for new background */
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.role-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.role-button {
+    background: #bca071;
+    color: #333;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Make role buttons full width within container */
+    max-width: 250px; /* Limit their max width */
+    justify-content: center; /* Center content inside button */
+}
+
+.role-button:hover {
+    background: #c3a36b;
+    color: #194b45;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.role-icon {
+    font-size: 1.2rem;
+}
+
+.signup-form-group {
+    margin-bottom: 25px;
+}
+
+.signup-form-label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #466e6a; /* Changed to #466e6a for contrast with light container */
     font-weight: bold;
-  }
-  
-  .signup-form-input-wrapper {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.signup-form-input-wrapper {
     position: relative;
-  }
-  
-  .signup-form-input {
+}
+
+.signup-form-input {
     width: 100%;
-    padding: 12px 35px 12px 12px;
-    border: 1px solid #ccc;
+    padding: 12px 35px 12px 12px; /* Adjust padding for icon */
+    border: 1px solid #ccc; /* Lighter border for lighter background */
     border-radius: 8px;
     font-size: 1rem;
-    color: #333; /* Black input text */
+    color: #333; /* Darker text for input */
+    background-color: #ffffff; /* White input background */
     box-sizing: border-box;
     outline: none;
-  }
-  
-  .signup-form-input:focus {
-    border-color: #c3a36b;
-  }
-  
-  .signup-form-input-icon {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Specific styling for select and textarea to match input */
+.signup-form-input.select,
+.signup-form-input.textarea {
+    appearance: none; /* Remove default browser styling for select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.9c-5%200-9.2%203.3-11.3%208.7s-1%2011.6%203.3%2015.4l119.5%20119.5c4.7%204.7%2012.3%204.7%2017%200l119.5-119.5c4.6-4.6%204.6-12.2%200-16.9z%22%2F%3E%3C%2Fsvg%3E'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 35px; /* Make space for the custom arrow */
+}
+
+textarea.signup-form-input {
+    resize: vertical; /* Allow vertical resizing for textareas */
+    min-height: 80px;
+    padding-right: 12px; /* Textareas don't typically have icons */
+}
+
+.signup-form-input:focus {
+    border-color: #bca071;
+    box-shadow: 0 0 6px rgba(188, 160, 113, 0.5);
+}
+
+.signup-form-input-icon {
     position: absolute;
     top: 50%;
     right: 12px;
     transform: translateY(-50%);
     color: #aaa;
-  }
-  
-  .signup-form-submit-button {
+    pointer-events: none; /* Make icon non-interactive so clicks pass through to input */
+}
+
+/* Special adjustment for select element icon if needed */
+select.signup-form-input + .signup-form-input-icon {
+    right: 30px; /* Adjust if a custom arrow is used to avoid overlap */
+}
+
+.signup-form-button { /* Renamed from signup-form-submit-button */
     width: 100%;
-    background-color: #c3a36b;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
+    background-color: #bca071; /* Theme button color */
+    color: white; /* Dark text for light button */
+    padding: 10px;
+    border: none; /* Removed border to match main button style */
+    border-radius: 30px;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600; /* Made bolder to match main button */
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .signup-form-submit-button:hover {
-    background-color: #b0925d;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .signup-form-error-message {
-    color: #dc3545; /* Red error message */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow to match main button */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.signup-form-button:hover {
+     background-color: #c3a36b; /* Slightly lighter on hover */
+    color: white; /* Darker green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form-button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.signup-form-error-message {
+    color: #dc3545; /* A more standard red for errors */
     text-align: center;
     margin-top: 10px;
-  }
-  
-  .signup-form-login-link {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.signup-form-footer { /* Renamed from signup-form-login-link for clarity */
     text-align: center;
     margin-top: 30px;
-    color: #777;
-  }
-  
-  .signup-form-login-link-a {
-    color: #c3a36b;
+    color: #666; /* Darker grey for text on light background */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.signup-form-footer a { /* Renamed from signup-form-login-link-a */
+    color: #466e6a; /* Link color to match heading */
     font-weight: bold;
     text-decoration: none;
-  }
-  
-  .signup-form-login-link-a:hover {
+}
+
+.signup-form-footer a:hover {
     text-decoration: underline;
-    color: #333;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
+    color: #194b45; /* Darker green on hover */
+}
+
+/* Styles for the "Switch Role" button */
+.switch-role-button {
+    width: 100%;
+    background-color: #bca071; /* Theme button color */
+    color: white; /* Dark text for light button */
+    padding: 10px;
+    border: none; /* Removed border to match main button style */
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600; /* Made bolder to match main button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow to match main button */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.switch-role-button:hover {
+    background-color: #c3a36b; /* Slightly lighter on hover */
+    color: white; /* Darker green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.switch-role-button:focus {
+    outline: none;
+    border-color: #bca071;
+    box-shadow: 0 0 6px rgba(188, 160, 113, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
     .signup-form-container {
-      padding: 25px;
-      border-radius: 8px;
+        padding: 25px;
+        border-radius: 8px;
+        margin-top: 50px; /* Adjust for smaller screens */
     }
-  
+
     .signup-form-title {
-      font-size: 2rem;
-      margin-bottom: 20px;
+        font-size: 2rem;
+        margin-bottom: 20px;
     }
-  
+
+    .signup-form-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
     .signup-form-group {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
     }
-  
-    .signup-form-submit-button {
-      font-size: 1rem;
-      padding: 12px;
-      margin-top: 20px;
+
+    .signup-form-button {
+        font-size: 1rem;
+        padding: 12px;
+        margin-top: 20px;
     }
-  
-    .signup-form-login-link {
-      margin-top: 20px;
-      font-size: 0.9rem;
+
+    .signup-form-footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
     }
-  }
+
+    .role-selection {
+        margin-bottom: 20px;
+    }
+
+    .role-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    .role-icon {
+        font-size: 1rem;
+    }
+
+    /* Responsive adjustments for the switch button */
+    .switch-role-button {
+        font-size: 0.8rem;
+        padding: 8px;
+        margin-top: 10px;
+    }
+}

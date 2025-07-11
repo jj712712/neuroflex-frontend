@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
  import logo from "../assets/logo.png";
  import Sidebar from "./Sidebar";
  import { logout } from '../Auth';
- import { auth } from '../firebase';
+ import { auth } from '../firebaseConfig';
  import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
  const Navbar = () => {
@@ -64,7 +64,7 @@ import React, { useState, useRef } from "react";
       {/* Conditionally render the consultation button */}
       {!sidebarOpen && (
        <Link to="/consultation" className="consultation-btn">
-        Free Consultation
+        {/* Free Consultation */}
        </Link>
       )}
      </div>

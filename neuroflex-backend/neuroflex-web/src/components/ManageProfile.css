@@ -1,0 +1,444 @@
+/* Import existing base styles if SelfAssmnt.css contains shared utility classes or variables */
+@import './SelfAssmnt.css';
+
+/* Keyframe for the slide-down animation on page load */
+@keyframes slideDownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px); /* Start slightly above its final position */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for subtle bounce on hover for sections */
+@keyframes bounceHover {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Move slightly up */
+    }
+}
+
+
+/* src/styles/ManageProfile.css */
+
+/* General Page Layout */
+.profile-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - var(--navbar-height) - var(--footer-height)); /* Adjust based on your layout */
+    background: linear-gradient(135deg, #688580, #688580);
+    /* linear-gradient(135deg, #e0f2f7, #c1e4eb); */
+     /* Match NeuroFlex branding */
+     /* Match NeuroFlex branding */
+    padding: 40px 20px;
+}
+
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    animation: fadeInScale 0.5s ease-out forwards;
+}
+
+/* Page Titles and Intro */
+.page-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    background: linear-gradient(90deg, #466e6a, #7cb342); /* Apply gradient for consistency */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-intro {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Feedback Messages */
+.feedback-message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.success-message {
+    background-color: #e6ffe6;
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.error-message {
+    background-color: #ffe6e6;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Section Styling */
+.profile-section {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.profile-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #194b45; /* A strong blue for titles */
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #a0d8d0; /* Match theme accent */
+    font-weight: 600;
+}
+
+.section-description {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Form Elements */
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.form-input {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-input:focus {
+    border-color: #7cb342; /* Theme accent on focus */
+    box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.2);
+    outline: none;
+}
+
+.textarea-no-resize {
+    resize: vertical; /* Allow only vertical resizing, or 'none' to disable entirely */
+    min-height: 80px;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-custom {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    accent-color: #466e6a; /* Theme accent for checkboxes */
+}
+
+.checkbox-label {
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #c3a36b ; /* Primary theme color */
+    color: white;
+    margin-top: 15px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #bca071; /* Darker shade on hover */
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-tertiary {
+    background-color: #ffffff;
+    color: #466e6a;
+    border: 1px solid #466e6a;
+}
+
+.btn-tertiary:hover:not(:disabled) {
+    background-color: #f0f8f5;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Red for destructive actions */
+    color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Action Group for Delete Button etc. */
+.action-group {
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.action-group-border-top {
+    border-top: 1px solid #f0f0f0; /* Light border for separation */
+}
+
+/* Reauthentication Modal */
+.reauth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.reauth-modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    animation: popIn 0.3s ease-out forwards;
+}
+
+.reauth-modal-content h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.reauth-modal-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.reauth-modal-content .form-input {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-actions .btn {
+    flex-grow: 1;
+}
+
+/* Profile Picture Upload Section */
+.profile-picture-upload {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture-preview-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #466e6a; /* Border matching theme */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.file-input {
+    display: none; /* Hide the default file input */
+}
+
+.custom-file-upload {
+    background-color: #7cb342; /* Accent color for upload button */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Makes it clickable like a button */
+    margin-top: 10px;
+}
+
+.custom-file-upload:hover {
+    background-color: #8cc63f; /* Lighter on hover */
+}
+
+.file-name {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+/* Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 25px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .form-input {
+        width: calc(100% - 20px);
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+}

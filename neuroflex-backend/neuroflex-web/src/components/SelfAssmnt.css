@@ -1,122 +1,642 @@
-/* SelfAssmnt.css - Based on a hypothetical "MT" theme (adjust colors as needed) */
+/* General container styling */
 
-.self-assmnt-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font */
-    background-color: #f8f9fa; /* Light gray background */
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 800px;
-  }
-  
-  h2 {
-    color: #343a40; /* Dark gray heading */
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    color: #495057; /* Medium gray label */
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  select,
-  input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da; /* Light gray border */
-    border-radius: 4px;
-    font-size: 16px;
-    color: #495057;
-    background-color: #fff;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  
-  select:focus,
-  input[type="number"]:focus {
-    border-color: #007bff; /* Theme primary color */
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Theme primary color shadow */
-  }
-  
-  select option {
-    font-size: 16px;
-    color: #495057;
-  }
-  
-  button[type="submit"],
-  .assessment-results button {
-    background-color: #007bff; /* Theme primary color */
-    color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
-  }
-  
-  button[type="submit"]:hover,
-  .assessment-results button:hover {
-    background-color: #0056b3; /* Darker shade of theme primary */
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #6c757d; /* Disabled button color */
-    cursor: not-allowed;
-  }
-  
-  .assessment-results {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    background-color: #e9ecef; /* Light gray result background */
-  }
-  
-  .assessment-results h3 {
+.self-assessment-container {
+    padding: 1.5rem; /* Increased padding for more space */
+    max-width: 900px;
+    margin: 5rem auto; /* Increased margin for more space */
+    background: linear-gradient(135deg, #eaf6f9 0%, #ffffff 100%); /* Slightly softer light background */
+    border-radius: 15px; /* Slightly more rounded corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    font-family: 'Poppins', sans-serif;
     color: #343a40;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  .assessment-results p {
-    color: #495057;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-  
-  .assessment-results .disclaimer {
-    font-size: 0.9em;
-    color: #6c757d;
-    font-style: italic;
-  }
-  
-  .progress-bar-container {
-    background-color: #e0e0e0; /* Light gray progress bar background */
-    border-radius: 4px;
-    margin-bottom: 15px;
-    overflow: hidden;
-  }
-  
-  .progress-bar {
-    background-color: #28a745; /* Theme success color for progress */
-    color: #fff;
-    height: 20px;
-    line-height: 20px;
+    line-height: 1.7; /* Slightly increased line height for readability */
+    
+}
+
+/* Titles and headings */
+.assessment-title, .section-title, .results-title {
+    color: #194b45; /* Darker green for headings */
     text-align: center;
-    border-radius: 4px;
-    width: 0%; /* Initial width */
-    transition: width 0.3s ease-in-out;
-    font-size: 0.8em;
-  }
-  
-  /* You might have more specific elements or variations in your "MT" theme */
-  /* Adjust colors, fonts, and spacing as needed to match your theme */
+    margin-bottom: 1.8rem; /* Increased margin */
+    font-weight: 700;
+    font-size: 2.4rem; /* Slightly larger main title */
+    letter-spacing: -0.8px; /* Tighter letter spacing */
+}
+
+.section-title {
+    font-size: 2rem; /* Slightly larger section title */
+    margin-top: 3rem; /* More space above sections */
+    margin-bottom: 1.8rem;
+    border-bottom: 2px solid #a7d9d1;
+    padding-bottom: 0.8rem; /* More padding */
+    display: inline-block;
+    width: 100%;
+}
+
+.results-title {
+    font-size: 2.2rem; /* Slightly larger results title */
+    margin-top: 2.5rem;
+    color: #194b45;
+}
+
+/* Introduction text */
+.assessment-intro {
+    text-align: center;
+    font-size: 1.15rem; /* Slightly larger intro text */
+    margin-bottom: 3rem; /* More space below intro */
+    color: #555;
+    max-width: 700px; /* Constrain width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form styling */
+.assessment-form .form-section {
+    background-color: #fcfdfe; /* Very light background */
+    padding: 2.2rem; /* Increased padding */
+    border-radius: 12px; /* More rounded corners */
+    margin-bottom: 2.5rem; /* Increased margin */
+    border: 1px solid #e5eff2; /* Lighter, more subtle border */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.04); /* More subtle inner shadow */
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 1rem; /* More space */
+    color: #194b45;
+    font-size: 1.1rem; /* Slightly larger label */
+}
+
+.form-group {
+    margin-bottom: 2rem; /* More space between question groups */
+    border-top: 1px dashed #e0e6eb; /* More subtle dashed border */
+    width: 600;
+    padding-top: 2rem; /* More padding */
+    display: flex; /* Use flexbox for question group */
+    flex-wrap: wrap; /* Allow question label and radio group to wrap if absolutely necessary */
+    align-items: flex-start; /* Align items to the top if they wrap */
+    gap: 15px; /* Space between question label and radio group */
+}
+
+.form-group:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+.question-label {
+    font-weight: 500;
+    margin-bottom: 0; /* Remove bottom margin as flex gap will handle spacing */
+    display: block;
+    color: #495057;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    flex: 1 1 50%; /* Allow label to grow/shrink, with a minimum basis of 50% */
+    min-width: 750px; /* Ensure label doesn't get too narrow before wrapping */
+    padding-left: 30px;
+    padding-right: 10px; /* Keep ample right padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.form-select, .number-input {
+    width: 800px; /* Account for padding */
+    flex-shrink: 0; /* Prevent the input from shrinking below its width */
+    flex-grow: 0;   /* Prevent the input from growing beyond its width */
+    flex-basis: auto; /* Let its width property define its size */
+    padding: 1rem 0.4rem; 
+    margin-left: 30px;
+    border: 1px solid #cce0e8; /* Slightly lighter border */
+    border-radius: 10px; /* More rounded */
+    font-size: 1.05rem; /* Slightly larger font */
+    color: #495057;
+    background-color: #f9fcfe; /* Very light input background */
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-select:focus, .number-input:focus {
+    border-color: #c3a36b;
+    outline: 0;
+    box-shadow: 0 0 0 0.3rem rgba(195, 163, 107, 0.3); /* Slightly larger shadow */
+}
+
+.form-select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23343a40%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center; /* Adjusted position */
+    background-size: 9px 11px; /* Slightly larger arrow */
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Adjusted min-width for options */
+    gap: 15px;
+    flex: 1 1 auto; /* Allow radio group to take remaining space, or wrap */
+    margin-left: 40px;
+    /* Ensure radio-group fills its flexible container */
+    max-width: 50%; /* Important for flex items */
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #495057;
+    padding: 0.6rem 0;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0.8rem; /* More space */
+    transform: scale(1.2); /* Even larger radio buttons */
+    vertical-align: middle;
+    /* Custom radio button styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #c3a36b; /* Theme color border */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.radio-group input[type="radio"]:checked {
+    background-color: #c3a36b; /* Theme color when checked */
+    border-color: #c3a36b;
+}
+
+.radio-group input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Buttons */
+.submit-button, .book-session-button {
+    display: block;
+    width: 100%;
+    padding: 1.1rem 1.8rem; /* More padding */
+    margin-top: 2.5rem; /* More space */
+    border: none;
+    border-radius: 10px; /* More rounded */
+    font-size: 1.2rem; /* Larger font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    /* Consistent gradient with navbar/footer */
+    background: linear-gradient(135deg, #a3875e 0%, #c3a36b 100%); /* Adjusted gradient for consistency */
+    box-shadow: 0 5px 12px rgba(195, 163, 107, 0.45); /* Enhanced shadow */
+}
+
+.submit-button:hover:not(:disabled),
+.book-session-button:hover {
+    background: linear-gradient(135deg, #8c734b 0%, #a3875e 100%); /* Darker hover gradient */
+    box-shadow: 0 8px 18px rgba(195, 163, 107, 0.55); /* More prominent hover shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.submit-button:disabled {
+    background: #d4d4d4; /* Lighter grey for disabled */
+    color: #888888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Results section */
+.assessment-results-container {
+    background-color: #f5fafd; /* Even lighter blue background */
+    padding: 3rem; /* More padding */
+    border-radius: 15px; /* More rounded */
+    margin-top: 3.5rem; /* More margin */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Enhanced shadow */
+    border: 1px solid #d8eef7; /* Lighter border */
+}
+
+/* Dynamic background based on performance level */
+.assessment-results-container.alpha-level-performance {
+    background-color: #e9ffe9; /* Very light green for Alpha */
+    border-color: #b3e6b3; /* Softer green border */
+}
+
+.assessment-results-container.beta-level-performance {
+    background-color: #fffaf0; /* Very light orange for Beta */
+    border-color: #ffedcc; /* Softer orange border */
+}
+
+.assessment-results-container.gamma-level-performance {
+    background-color: #fff0f0; /* Very light red for Gamma */
+    border-color: #ffcccc; /* Softer red border */
+}
+
+.results-divider {
+    border: 0;
+    height: 2px; /* Thicker divider */
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #c3a36b, rgba(0, 0, 0, 0)); /* Theme color in divider */
+    margin: 3rem 0; /* More margin */
+}
+
+.chart-container {
+    position: relative;
+    height: 400px; /* Increased height for better chart visibility */
+    width: 100%;
+    margin-bottom: 2.5rem; /* More space */
+    background-color: #ffffff;
+    border-radius: 12px; /* More rounded */
+    padding: 1.5rem; /* More padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
+}
+
+.interpretations {
+    margin-bottom: 2.5rem; /* More space */
+}
+
+.interpretations h3 {
+    text-align: center;
+    color: #194b45;
+    margin-bottom: 1.2rem; /* More space */
+    font-size: 1.8rem; /* Larger font */
+    font-weight: 600;
+}
+
+.interpretations ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove default padding */
+    margin: 0;
+    background-color: #fefcf9; /* Lighter, warm background for interpretation box */
+    border: 1px solid #e0d4c1; /* Soft, subtle border */
+    padding: 1.5rem 2rem; /* More padding */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 1.5rem;
+    line-height: 1.8; /* Increased line height */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06); /* Enhanced shadow */
+    transition: all 0.5s ease;
+}
+
+.interpretations ul li {
+    margin-bottom: 0.8rem; /* More space between list items */
+    color: #3e444a; /* Slightly darker text for readability */
+    position: relative;
+    padding-left: 1.8rem; /* Space for custom bullet point */
+}
+
+.interpretations ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom bullet point with theme color */
+.interpretations ul li::before {
+    content: '•'; /* Unicode character for bullet */
+    color: #c3a36b; /* Theme color bullet */
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0.2rem; /* Adjust vertical alignment */
+    font-weight: bold;
+}
+
+/* Interpretation colors based on level - text color and border */
+.interpretations.alpha-level-performance ul {
+    background-color: #e9ffe9;
+    border-color: #b3e6b3; /* Soft green */
+    color: #155724; /* Darker green text */
+}
+.interpretations.alpha-level-performance ul li::before {
+    color: #28a745; /* Strong green bullet */
+}
+
+.interpretations.beta-level-performance ul {
+    background-color: #fffaf0;
+    border-color: #ffedcc; /* Soft orange */
+    color: #856404; /* Darker orange text */
+}
+.interpretations.beta-level-performance ul li::before {
+    color: #ffc107; /* Strong orange bullet */
+}
+
+.interpretations.gamma-level-performance ul {
+    background-color: #fff0f0;
+    border-color: #ffcccc; /* Soft red */
+    color: #721c24; /* Darker red text */
+}
+.interpretations.gamma-level-performance ul li::before {
+    color: #dc3545; /* Strong red bullet */
+}
+
+
+.interpretations strong {
+    font-weight: 700;
+    color: inherit; /* Inherit color from parent ul */
+}
+
+/* Wrapper for the read more/less button to align it */
+.read-more-wrapper, .read-less-wrapper {
+    text-align: center;
+    margin-top: 1rem; /* Space above button */
+    list-style: none; /* Ensure no bullet for this li */
+    padding-left: 0; /* Ensure no left padding */
+    margin-left: 0;
+}
+
+.read-more-wrapper::before, .read-less-wrapper::before {
+    content: none !important; /* Remove custom bullet for button wrapper */
+}
+
+/* Updated Read More/Less button styling */
+.read-more-button {
+    display: inline-block; /* Changed to inline-block */
+    padding: 0.8rem 1.6rem; /* Adjusted padding */
+    background: linear-gradient(135deg, #a3875e 0%, #c3a36b 100%); /* Consistent gradient */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Slightly more rounded */
+    cursor: pointer;
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(195, 163, 107, 0.4); /* Enhanced shadow */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); /* Subtle text shadow */
+}
+
+.read-more-button:hover {
+    background: linear-gradient(135deg, #8c734b 0%, #a3875e 100%); /* Darker hover gradient */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 14px rgba(195, 163, 107, 0.55); /* More prominent hover shadow */
+}
+
+.response-review {
+    margin-top: 2.5rem;
+    padding: 2rem; /* More padding */
+    background-color: #fefefe;
+    border: 2px solid #e5f0f3; /* Lighter border */
+    border-radius: 12px; /* More rounded */
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.03); /* More subtle inner shadow */
+}
+
+.response-review h3 {
+    color: #194b45;
+    margin-bottom: 1.8rem; /* More space */
+    text-align: center;
+    font-size: 1.7rem; /* Larger font */
+    font-weight: 600;
+}
+
+.response-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items */
+    padding: 0.9rem 0; /* More padding */
+    border-bottom: 1px dashed #e9f0f5; /* More subtle dashed border */
+    font-size: 1rem;
+}
+
+.response-item:last-child {
+    border-bottom: none;
+}
+
+.response-label {
+    font-weight: 500;
+    color: #555;
+    flex-basis: 65%; /* Give label more space */
+    padding-right: 1rem; /* Add some padding to separate from value */
+}
+
+.response-value {
+    font-weight: 600;
+    flex-basis: 35%; /* Value takes less space */
+    text-align: right;
+    padding-left: 1rem;
+}
+
+/* Specific styling for concern levels */
+.response-value.potential-concern {
+    color: #dc3545;
+}
+
+.response-value.moderate-concern {
+    color: #ffc107;
+}
+
+.response-value.low-concern {
+    color: #28a745;
+}
+
+/* Firebase Error Message */
+.firebase-error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+    border-radius: 8px;
+    padding: 1.2rem; /* More padding */
+    margin-bottom: 2.5rem; /* More margin */
+    text-align: center;
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 500;
+}
+
+.firebase-error-message p:first-child {
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .self-assessment-container {
+        padding: 1.8rem;
+        margin: 1.5rem auto;
+    }
+
+    .assessment-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+    }
+
+    .form-label {
+        font-size: 1rem;
+    }
+
+    .question-label {
+        font-size: 0.95rem;
+        padding-right: 10px; /* Reduced padding for smaller screens */
+        flex: 1 1 100%; /* On smaller screens, allow label to take full width */
+        min-width: unset; /* Remove min-width to allow full flexibility */
+        margin-bottom: 0.8rem; /* Add back margin below label when stacked */
+    }
+
+    .form-select, .number-input {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+    }
+
+    .radio-group {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); /* Further adjust min-width for options */
+        gap: 10px; /* Reduced gap */
+        flex: 1 1 100%; /* Radio group takes full width when label stacks */
+    }
+    .radio-group label {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+    }
+    .radio-group input[type="radio"] {
+        transform: scale(1.1);
+        width: 18px;
+        height: 18px;
+    }
+    .radio-group input[type="radio"]:checked::after {
+        width: 7px;
+        height: 7px;
+    }
+
+    .submit-button, .book-session-button {
+        font-size: 1.05rem;
+        padding: 0.9rem 1.2rem;
+    }
+
+    .chart-container {
+        height: 300px;
+        padding: 1rem;
+    }
+
+    .interpretations ul {
+        padding: 1rem 1.5rem;
+        border-left-width: 4px;
+    }
+    .interpretations ul li {
+        padding-left: 1.5rem;
+    }
+    .interpretations ul li::before {
+        font-size: 1.1rem;
+        top: 0.15rem;
+    }
+
+    .read-more-button {
+        padding: 0.7rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    .response-review {
+        padding: 1.5rem;
+    }
+
+    .response-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.6rem 0;
+    }
+
+    .response-label {
+        flex-basis: 100%;
+        margin-bottom: 0.2rem;
+        padding-right: 0;
+    }
+
+    .response-value {
+        flex-basis: 100%;
+        text-align: left;
+        padding-left: 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .self-assessment-container {
+        padding: 1rem;
+        margin: 0.8rem auto;
+    }
+
+    .assessment-title {
+        font-size: 1.7rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .form-section {
+        padding: 0.8rem;
+    }
+
+    .form-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .question-label {
+        font-size: 0.88rem;
+    }
+
+    .form-select, .number-input {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.9rem;
+    }
+
+    .radio-group {
+        grid-template-columns: 1fr; /* Force single column for radio options on very small screens */
+        gap: 8px;
+    }
+    .radio-group label {
+        font-size: 0.85rem;
+        padding: 0.3rem 0;
+    }
+    .radio-group input[type="radio"] {
+        transform: scale(1);
+        width: 16px;
+        height: 16px;
+    }
+    .radio-group input[type="radio"]:checked::after {
+        width: 6px;
+        height: 6px;
+    }
+
+    .submit-button, .book-session-button {
+        font-size: 0.95rem;
+        padding: 0.7rem 1rem;
+    }
+
+    .chart-container {
+        height: 250px;
+        padding: 0.8rem;
+    }
+
+    .interpretations h3, .response-review h3 {
+        font-size: 1.5rem;
+    }
+    .interpretations ul {
+        padding: 0.8rem 1.2rem;
+        border-left-width: 3px;
+    }
+    .interpretations ul li {
+        font-size: 0.9rem;
+        padding-left: 1.3rem;
+    }
+    .interpretations ul li::before {
+        font-size: 1rem;
+        top: 0.1rem;
+    }
+    .read-more-button {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}

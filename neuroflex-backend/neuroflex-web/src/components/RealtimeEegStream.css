@@ -1,0 +1,39 @@
+.realtime-eeg-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .realtime-eeg-container h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .eeg-display {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  
+  .eeg-data-item {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+  
+  .timestamp {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #555;
+  }
+  
+  .channels {
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: #777;
+    margin: 0;
+  }

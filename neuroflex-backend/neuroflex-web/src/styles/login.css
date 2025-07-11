@@ -1,226 +1,277 @@
 /* src/styles/login.css */
 
 .login-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: calc(100vh - /* Height of your navbar */ 60px); /* Adjust navbar height */
-    background: linear-gradient(to right, #194b45, rgba(51, 119, 107, 0.9));
-    color: #333; /* Default text color */
-    padding: 20px;
-  }
-  
-  .login-logo {
-    font-size: 2.5rem;
-    color: #333; /* Black logo text */
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .login-welcome {
-    font-size: 2rem;
-    color: #555; /* Darker gray welcome text */
-    margin-bottom: 25px;
-    text-align: center;
-  }
-  
-  .login-form-container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 350px;
-  }
-  
-  .login-form-title {
-    display: none;
-  }
-  
-  .login-form-group {
-    margin-bottom: 25px;
-  }
-  
-  .login-form-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: bold;
-  }
-  
-  .login-form-input-wrapper {
-    position: relative;
-  }
-  
-  .login-form-input {
-    width: 100%;
-    padding: 12px 35px 12px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    color: #333; /* Black input text */
-    box-sizing: border-box;
-    outline: none;
-  }
-  
-  .login-form-input:focus {
-    border-color: #c3a36b;
-  }
-  
-  .login-form-input-icon {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    color: #aaa;
-  }
-  
-  .login-form-submit-button {
-    width: 100%;
-    background-color: #c3a36b;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-form-submit-button:hover {
-    background-color: #b0925d;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .login-form-forgot-password {
-    display: block;
-    text-align: right;
-    margin-top: 15px;
-    color: #555; /* Dark gray forgot password link */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  background: linear-gradient(135deg, #688580, #688580);
+  color: #f0f8f5;
+  padding: 20px;
+  box-sizing: border-box;
+  transform-origin: top;
+}
+
+.login-form-container {
+  background-color: #466e6a;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 65px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.login-form-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #f0f8f5;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: -0.04em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-form-group {
+  margin-bottom: 25px;
+}
+
+.login-form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #f0f8f5;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-form-input-wrapper {
+  position: relative;
+}
+
+.login-form-input {
+  width: 100%;
+  padding: 12px 35px 12px 12px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #f0f8f5;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-form-input:focus {
+  border-color: #bca071;
+  box-shadow: 0 0 6px rgba(188, 160, 113, 0.5);
+}
+
+.login-form-input-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.login-form-submit-button {
+  width: 100%;
+  background: #bca071;
+  color: #333;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-top: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.25);
+}
+
+.login-form-submit-button .google-icon {
+  margin-right: 10px;
+  /* You'll need to find a way to include the actual Google logo here.
+      You might use an image, a library, or inline SVG. */
+}
+
+.login-social-button {
+  width: 100%;
+  background: #d6b781;
+  color: #333;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.login-social-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 5px 8px #E5D1AE;
+}
+
+.login-social-icon {
+  margin-right: 10px;
+  /* You'll need to find a way to include the actual Google logo here.
+      You might use an image, a library, or inline SVG. */
+}
+
+.login-form-forgot-password-container {
+  background-color: none;
+  text-align: center;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.login-form-forgot-password {
+    color: #ccc;
+    background-color: #466e6a;
     font-size: 0.9rem;
     text-decoration: none;
-  }
-  
-  .login-form-forgot-password:hover {
-    text-decoration: underline;
-    color: #c3a36b;
-  }
-  
-  .login-separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #777; /* Darker gray separator text */
-    margin: 25px 0;
-  }
-  
-  .login-separator::before,
-  .login-separator::after {
-    content: '';
-    flex-grow: 1;
-    background-color: #ddd;
-    height: 1px;
-    margin: 0 15px;
-  }
-  
-  .login-social-button {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #333; /* Black social button text */
-    padding: 12px;
-    border: 1px solid #ddd;
+    font-family: 'Open Sans', sans-serif;
+    border: none; /* Remove the border/outline */
+    outline: none; /* Ensure no focus outline as well */
+}
+
+.login-form-forgot-password:hover {
+  text-decoration: underline;
+  color: #bca071;
+}
+
+.login-separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+  margin: 25px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-separator::before,
+.login-separator::after {
+  content: '';
+  flex-grow: 1;
+  background-color: #555;
+  height: 1px;
+  margin: 0 15px;
+}
+
+.login-signup-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+  font-family: 'Open Sans', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.login-signup-link-a {
+  color: #bca071;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-signup-link-a:hover {
+  text-decoration: underline;
+  color: #bca071;
+}
+
+.login-form-error-message {
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-form-success-message {
+  color: #a7c4a7;
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Styles for when forgot password is clicked (adjust opacity) */
+.login-container.forgot-password-active {
+  background-color: rgba(25, 75, 69, 0.7);
+}
+.login-form-input {
+  width: 100%;
+  padding: 12px 35px 12px 12px;
+  border: 1px solid #555; /* Darker border */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #f0f8f5; /* Light input text */
+  background-color:#f0f8f5; /* Slightly transparent input background */
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+}
+/* Change input text color when filled */
+.login-form-input:not(:placeholder-shown) {
+  color: #8ca5a2;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-form-container {
+    padding: 25px;
     border-radius: 8px;
+  }
+
+  .login-form-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .login-form-group {
+    margin-bottom: 20px;
+  }
+
+  .login-form-submit-button {
     font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 12px;
+    margin-top: 20px;
+  }
+
+  .login-social-button {
+    font-size: 0.9rem;
+    padding: 10px;
+    margin-top: 15px;
+  }
+
+  .login-form-forgot-password-container {
+    margin-top: 15px;
     margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
-  .login-social-button:hover {
-    background-color: #e9ecef;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  .login-separator {
+    margin: 20px 0;
   }
-  
-  .login-social-icon {
-    margin-right: 10px;
-    color: #4285f4;
-  }
-  
+
   .login-signup-link {
-    text-align: center;
-    margin-top: 30px;
-    color: #777; /* Dark gray signup link text */
+    margin-top: 15px;
+    font-size: 0.9rem;
   }
-  
-  .login-signup-link-a {
-    color: #c3a36b;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .login-signup-link-a:hover {
-    text-decoration: underline;
-    color: #c3a36b;
-  }
-  
-  .login-form-error-message {
-    color: #dc3545; /* Red error message */
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .login-form-success-message {
-    color: #28a745; /* Green success message */
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    .login-form-container {
-      padding: 25px;
-      border-radius: 8px;
-    }
-  
-    .login-logo {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-  
-    .login-welcome {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-    }
-  
-    .login-form-group {
-      margin-bottom: 20px;
-    }
-  
-    .login-form-submit-button {
-      font-size: 1rem;
-      padding: 12px;
-      margin-top: 20px;
-    }
-  
-    .login-separator {
-      margin: 20px 0;
-    }
-  
-    .login-social-button {
-      font-size: 0.9rem;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-  
-    .login-signup-link {
-      margin-top: 20px;
-      font-size: 0.9rem;
-    }
-  }
+}

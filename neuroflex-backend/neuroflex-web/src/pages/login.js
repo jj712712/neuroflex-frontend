@@ -5,7 +5,7 @@ import {
   sendPasswordResetEmail,
   // Add other Firebase auth methods if needed (e.g., Google Sign-in)
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../firebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaGoogle } from "react-icons/fa"; // Consider more icons
 
@@ -15,6 +15,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotPasswordActive, setForgotPasswordActive] = useState(false); // New state
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -43,6 +44,7 @@ const Login = () => {
   };
 
   const handleForgotPassword = async () => {
+    setForgotPasswordActive(true); // Set state to active
     if (!email) {
       setError("Please enter your email to reset your password.");
       return;
@@ -53,6 +55,9 @@ const Login = () => {
       setMessage("Password reset email sent! Check your inbox.");
     } catch (err) {
       setError("Failed to send reset email. Please try again.");
+    } finally {
+      // You might want to reset the active state after a while or on another action
+      // setTimeout(() => setForgotPasswordActive(false), 5000);
     }
   };
 
@@ -60,9 +65,9 @@ const Login = () => {
   // const handleGoogleSignIn = async () => { ... };
 
   return (
-    <div className="login-container">
+    <div className={`login-container ${forgotPasswordActive ? 'forgot-password-active' : ''}`}>
       <div className="login-form-container">
-        <h2 className="login-form-title">Welcome Back!</h2> {/* More welcoming */}
+        <h2 className="login-form-title">Welcome Back!</h2>
 
         {error && <p className="login-form-error-message">{error}</p>}
         {message && <p className="login-form-success-message">{message}</p>}
@@ -115,20 +120,21 @@ const Login = () => {
 
         <button
           className="login-social-button"
-          // onClick={handleGoogleSignIn} // Implement this
-          type="button" // Important for buttons outside a form!
+          type="button"
         >
           <FaGoogle className="login-social-icon" />
           Continue with Google
         </button>
 
-        <button
-  type="button"
-  onClick={handleForgotPassword}
-  className="login-form-forgot-password"
->
-  Forgot Password?
-</button>
+        <div className="login-form-forgot-password-container">
+          <button
+            type="button"
+            onClick={handleForgotPassword}
+            className="login-form-forgot-password"
+          >
+            Forgot Password?
+          </button>
+        </div>
 
         <div className="login-separator">Or</div>
 

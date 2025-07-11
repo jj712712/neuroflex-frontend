@@ -1,0 +1,40 @@
+.therapist-realtime-container {
+    padding: 20px;
+    border: 1px solid #4CAF50; /* Theme color for therapist */
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #f1f8e9;
+  }
+  
+  .therapist-realtime-container h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+  }
+  
+  /* Reusing eeg-display and eeg-data-item styles */
+  .eeg-display {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #8bc34a;
+    padding: 10px;
+    background-color: #dcedc8;
+    border-radius: 4px;
+  }
+  
+  .eeg-data-item {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+  
+  .timestamp {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #388e3c;
+  }
+  
+  .channels {
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: #558b2f;
+    margin: 0;
+  }

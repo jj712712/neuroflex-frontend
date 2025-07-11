@@ -1,0 +1,182 @@
+/* src/components/Footer.css */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap'); /* Adjusted font weights */
+
+.neuroflex-footer {
+  background-color: #fefbf6;
+  color: #555;
+  padding: 35px 20px; /* Slightly increased vertical padding */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95em; /* Slightly larger base font */
+  line-height: 1.5;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1.6fr 1.1fr 1.1fr; /* Adjusted column widths */
+  grid-template-rows: auto auto 1fr;
+  gap: 20px;
+}
+
+.footer-section {
+  transition: transform 0.3s ease;
+}
+
+.footer-section:hover {
+  transform: translateY(-2px);
+}
+
+.footer-section h3 {
+  color: #444;
+  margin-bottom: 10px; /* Slightly increased margin */
+  font-size: 1.1em; /* Slightly larger heading */
+  font-weight: 700; /* More bold heading */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Slightly increased gap */
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-icon {
+  font-size: 1em; /* Slightly larger icon */
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px; /* Slightly increased margin */
+  text-decoration: none;
+}
+
+.footer-logo img {
+  max-height: 32px; /* Slightly larger logo */
+  margin-right: 10px; /* Slightly increased margin */
+}
+
+.logo-text {
+  font-size: 1.4em; /* Slightly larger logo text */
+  font-weight: bold;
+  color: #222;
+}
+
+.company-info p {
+  font-size: 0.9em; /* Slightly larger paragraph font */
+  color: #666;
+  line-height: 1.5; /* Slightly increased line height */
+}
+
+.resources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resources ul li {
+  margin-bottom: 10px; /* Slightly increased margin */
+}
+
+.resources ul li a {
+  color: #555;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Slightly increased gap */
+  font-size: 0.9em; /* Slightly larger link font */
+}
+
+.link-icon {
+  font-size: 0.9em; /* Slightly larger link icon */
+}
+
+.resources ul li a:hover {
+  color: #688580;
+  transform: translateX(3px);
+}
+
+.contact p {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em; /* Slightly larger contact font */
+  margin-bottom: 10px; /* Slightly increased margin */
+}
+
+.contact-icon {
+  margin-right: 8px; /* Slightly increased margin */
+  font-size: 1em; /* Slightly larger contact icon */
+}
+
+.contact p a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact p a:hover {
+  color: #688580;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px; /* Slightly increased gap */
+  margin-top: 10px; /* Slightly increased margin */
+  font-size: 1.2em; /* Slightly larger social icons */
+}
+
+.social-icons a {
+  color: #777;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #688580;
+}
+
+.location.full-map { /* Style the location section */
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px; /* Slightly increased padding */
+}
+
+.location.full-map h3 {
+  margin-bottom: 12px; /* Slightly increased margin */
+  font-size: 1.15em; /* Slightly larger heading */
+  font-weight: 700; /* More bold heading */
+}
+
+.map-container {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  height: 280px; /* Slightly increased map height */
+  width: 100%;
+  margin: 10px; /* Keep the margin */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.footer-bottom {
+  background-color: #e9e4d8;
+  color: #666;
+  text-align: center;
+  padding: 18px 0; /* Slightly increased padding */
+  font-size: 0.85em; /* Slightly larger bottom text */
+}
+
+.footer-bottom p {
+  margin: 0;
+  letter-spacing: 0.3px; /* Slightly increased letter spacing */
+}

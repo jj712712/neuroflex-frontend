@@ -1,0 +1,175 @@
+/* src/components/TherapistDashboard.css */
+
+.dashboard-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: calc(100vh - 60px); /* Ensure it fills the viewport minus navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; 
+  background: linear-gradient(135deg, #688580, #688580); 
+  /* Push content below fixed navbar */
+  /* Applying a subtle gradient based on your website's theme */
+  /* background: linear-gradient(135deg, #f0f8f5 0%, #e0ece9 100%); Lighter, calming gradient */
+  color: #333; /* Dark text for better readability on light background */
+  transform-origin: top;
+  padding-bottom: 50px; /* Add space at the bottom */
+}
+
+.profile-header {
+  width: 90%;
+  max-width: 800px; /* Adjust max-width for the header content */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 100px; /* Larger for therapist profile */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; /* Space below the image */
+  border: 4px solid #c3a36b; /* Stronger border with theme accent */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.profile-header h1 {
+  color: #194b45; /* Primary theme color for heading */
+  margin-bottom: 5px;
+  font-size: 2.2em; /* Slightly larger for main heading */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header p {
+  font-size: 1.1em;
+  color: #33776b; /* Secondary theme color for text */
+  margin-top: 5px;
+}
+
+.dashboard-content {
+  width: 90%;
+  max-width: 950px; /* Adjusted to allow more space for buttons */
+  text-align: left;
+  padding: 30px; /* Increased padding for better spacing */
+  background-color: white; /* Changed background color to white for content area */
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+  color: #333; /* Dark text for content */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+.dashboard-content h3 {
+  color: #194b45; /* Primary theme color for subheading */
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-align: center;
+
+  
+  
+}
+
+.dashboard-content p {
+  font-size: 1em;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #555;
+}
+
+.dashboard-content ul {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+  display: grid; /* Use grid for a responsive layout of buttons */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between buttons */
+}
+
+.dashboard-content li {
+  /* No direct styling here, as the <a> tag will be styled as a button */
+}
+
+.dashboard-content ul li a {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 20px 25px; /* Generous padding for button feel */
+  border: none;
+  border-radius: 12px; /* Slightly more rounded corners */
+  font-size: 1.1em; /* Larger font size for readability */
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #c3a36b; /* Primary theme gradient for buttons */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-decoration: none; /* Remove underlines from links */
+  text-align: center;
+  display: flex; /* Use flexbox to center text vertically and horizontally */
+  align-items: center;
+  justify-content: center;
+  min-height: 80px; /* Ensure a consistent height for all buttons */
+
+}
+
+.dashboard-content ul li a:hover {
+  transform: translateY(-5px); /* More pronounced lift on hover */
+  box-shadow: 0 8px 12px rgba(195, 163, 107, 0.7);
+}
+
+/* Optional: Different button styles for different categories if desired */
+/* .dashboard-content ul li.patient-management a {
+  background: linear-gradient(45deg, #c3a36b, #bca071);
+} */
+
+/* .dashboard-content ul li.scheduling a {
+  background: linear-gradient(45deg, #688580, #809a94);
+} */
+
+/* You can continue with other specific button styles if needed */
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding-top: 80px;
+  }
+
+  .profile-header {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-header h1 {
+    font-size: 1.8em;
+  }
+
+  .dashboard-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .dashboard-content h3 {
+    font-size: 1.5em;
+  }
+
+  .dashboard-content ul {
+    grid-template-columns: 1fr; /* Stack buttons on small screens */
+  }
+
+  .dashboard-content ul li a {
+    padding: 15px 20px;
+    font-size: 1em;
+    min-height: 70px;
+  }
+}

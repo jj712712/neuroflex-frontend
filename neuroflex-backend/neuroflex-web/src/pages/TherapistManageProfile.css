@@ -1,0 +1,287 @@
+/* src/pages/TherapistManageProfile.css */
+
+.manage-profile-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: calc(100vh - 60px); /* Adjust based on navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px 50px; /* Top padding for navbar, then side/bottom */
+  background: linear-gradient(135deg, #688580, #688580); /* Light gradient background */
+  color: #333;
+}
+
+.profile-form-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px; /* Max width for the form card */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.profile-form-card h2 {
+  text-align: center;
+  color: #194b45; /* Dark teal */
+  margin-bottom: 10px;
+  font-size: 2.2em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-description {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.form-section {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.form-section legend {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #c3a36b; /* Gold/brown accent */
+  padding: 0 10px;
+  margin-left: -10px; /* Adjust to align with fieldset border */
+}
+
+.form-section .section-description {
+  font-size: 0.95em;
+  color: #777;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: left; /* Align description within section */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #194b45; /* Dark teal for labels */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #33776b; /* Lighter teal on focus */
+  box-shadow: 0 0 0 3px rgba(51, 119, 107, 0.2); /* Soft shadow on focus */
+  outline: none;
+}
+
+/* Specific styling for multi-selects */
+.form-group select[multiple] {
+  min-height: 120px; /* Give enough space for multiple options */
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  color: #777;
+  font-size: 0.85em;
+}
+
+/* Address group layout */
+.address-group input {
+  margin-bottom: 10px; /* Space between address fields */
+}
+
+/* Profile Photo Upload */
+.avatar-upload-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.avatar-preview-area {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 3px solid #c3a36b;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-placeholder {
+  color: #777;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 10px;
+}
+
+/* File input styling (can be tricky to style directly, often wrapped or hidden) */
+.form-group input[type="file"] {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #194b45;
+  margin-top: 5px;
+}
+
+.form-group input[type="file"]::-webkit-file-upload-button {
+  background-color: #33776b;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-group input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #194b45;
+}
+
+.uploaded-files-preview {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+}
+
+.uploaded-files-preview p {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+  text-align: left;
+}
+
+.uploaded-files-preview ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding: 0;
+}
+
+.uploaded-files-preview li {
+  font-size: 0.9em;
+  color: #666;
+}
+
+
+/* Form Actions Buttons */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.save-button {
+  background-color: #194b45; /* Dark teal */
+  color: white;
+  box-shadow: 0 4px 8px rgba(25, 75, 69, 0.2);
+}
+
+.save-button:hover {
+  background-color: #33776b; /* Lighter teal on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(25, 75, 69, 0.3);
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .profile-form-card {
+    padding: 20px;
+    margin: 0 10px; /* Add some side margin on smaller screens */
+  }
+
+  .profile-form-card h2 {
+    font-size: 1.8em;
+  }
+
+  .form-section {
+    padding: 15px;
+  }
+
+  .form-section legend {
+    font-size: 1.2em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .save-button,
+  .cancel-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+  }
+}

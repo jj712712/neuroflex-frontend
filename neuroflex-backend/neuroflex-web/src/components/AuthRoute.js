@@ -1,7 +1,7 @@
 // src/components/AuthRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth } from '../firebaseConfig';
 
 const AuthRoute = ({ children }) => {
  const isAuthenticated = !!auth.currentUser;
