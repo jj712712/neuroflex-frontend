@@ -58,15 +58,15 @@ export const storage = getStorage(app);
 // It runs only when firebaseConfig.js is initially imported.
 
 /* eslint-disable no-undef */ // Temporarily disable no-undef for this block
-if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-    signInWithCustomToken(auth, __initial_auth_token)
-        .then(() => console.log("Firebase: Signed in with Canvas custom token."))
-        .catch(error => console.error("Firebase: Custom token sign-in error:", error));
-} else {
-    signInAnonymously(auth)
-        .then(() => console.log("Firebase: Signed in anonymously."))
-        .catch(error => console.error("Firebase: Anonymous sign-in error:", error));
-}
+// if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+//     signInWithCustomToken(auth, __initial_auth_token)
+//         .then(() => console.log("Firebase: Signed in with Canvas custom token."))
+//         .catch(error => console.error("Firebase: Custom token sign-in error:", error));
+// } else {
+//     signInAnonymously(auth)
+//         .then(() => console.log("Firebase: Signed in anonymously."))
+//         .catch(error => console.error("Firebase: Anonymous sign-in error:", error));
+// }
 /* eslint-enable no-undef */ // Re-enable no-undef
 
 export default app;

@@ -19,15 +19,19 @@ const UserDashboard = () => {
         {/* You could add more header elements here if needed */}
       </header>
       <div className="dashboard-content">
-        <h1>Patient    Dashboard</h1>
+        <h1>Patient Dashboard</h1>
         <p className="welcome-message">Welcome to your personalized NeuroFlex experience!</p>
         <div className="dashboard-actions">
           <Link to="/self-assessment" className="dashboard-button primary">
             Take Initial Assessment
           </Link>
           <Link to="/find-therapist" className="dashboard-button secondary">
-      Find a Therapist
-    </Link>
+            Find a Therapist
+          </Link>
+          {/* NEW: My Bookings Button */}
+          <Link to="/my-bookings" className="dashboard-button accent"> {/* Using a new 'accent' class for distinct styling */}
+            View My Bookings
+          </Link>
           <Link to="/session-history" className="dashboard-button tertiary">
             View Session History
           </Link>
@@ -43,7 +47,7 @@ const UserDashboard = () => {
           </button>
         </div>
       </div>
-      
+
     </div>
   );
 };

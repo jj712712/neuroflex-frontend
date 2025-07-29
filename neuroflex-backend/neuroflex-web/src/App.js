@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -8,7 +7,6 @@ import Signup from "./pages/Signup";
 import EEGConnection from "./pages/EEGConnection";
 import LiveEEG from "./pages/LiveEEG";
 import Performance from "./pages/Performance";
-// import Profile from "./pages/Profile"; // <<< REMOVE or rename this if it's the old one
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import HowItWorks from "./pages/HowItWorks";
@@ -22,15 +20,22 @@ import TherapistSelection from "./components/TherapistSelection";
 import AuthRoute from "./components/AuthRoute";
 import Footer from './components/Footer';
 import FindTherapist from './components/FindTherapist';
-import ManageProfile from './components/ManageProfile'; // This is for editing
-import ViewProfilePage from './pages/ViewProfilePage'; // NEW: This is for viewing patient details
+import ManageProfile from './components/ManageProfile';
+import ViewProfilePage from './pages/ViewProfilePage';
 import StartNewSession from './components/StartNewSession';
 import TherapistPatientsList from './components/TherapistPatientsList';
+import TherapistProfileView from './pages/TherapistProfileView';
+import SessionHistory from './components/SessionHistory';
+import SessionDetail from './components/SessionDetail';
+import MyBookings from './pages/MyBookings'; // Ensure this import is present
+import PatientSessionDetails from './components/PatientSessionDetails'; // Import the new component
+
 import './App.css';
 
 const App = () => {
   return (
     <Router>
+      {/* Navbar and Footer are outside the content-wrapper and Routes, which is fine for consistent layout */}
       <Navbar />
       <div className="content-wrapper"> {/* Optional: For applying layout styles */}
         <Routes>
@@ -41,30 +46,34 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
 
           {/* Authentication Routes (Redirect if logged in) */}
+          {/* These routes use AuthRoute to redirect authenticated users away from login/signup */}
           <Route path="/signup" element={<AuthRoute><Signup /></AuthRoute>} />
           <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
 
-          {/* Protected Routes (Require Login) */}
+          {/* Protected Routes (Require Login) - These routes require any authenticated user */}
           <Route path="/eeg-connection" element={<PrivateRoute><EEGConnection /></PrivateRoute>} />
-          <Route path="/live-eeg" element={<PrivateRoute><LiveEEG /></PrivateRoute>} />
-          <Route path="/performance" element={<PrivateRoute><Performance /></PrivateRoute>} />
-
-          {/* NEW: Route for viewing patient details (read-only) */}
           <Route path="/profile" element={<PrivateRoute><ViewProfilePage /></PrivateRoute>} />
-
           <Route path="/self-assessment" element={<PrivateRoute><SelfAssmnt /></PrivateRoute>} />
           <Route path="/onboarding" element={<PrivateRoute><Onboarding /></PrivateRoute>} />
-          <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard /></PrivateRoute>} />
-          <Route path="/therapist-dashboard" element={<PrivateRoute><TherapistDashboard /></PrivateRoute>} />
           <Route path="/therapist-selection" element={<PrivateRoute><TherapistSelection /></PrivateRoute>} />
           <Route path="/find-therapist" element={<PrivateRoute><FindTherapist /></PrivateRoute>} />
-          <Route path="/therapist/profile/manage" element={<TherapistManageProfile />} />
-          <Route path="/therapist/patients" element={<TherapistPatientsList />} /> 
-
-          {/* Existing: Route for managing/editing profile */}
           <Route path="/manage-profile" element={<PrivateRoute><ManageProfile /></PrivateRoute>} />
-
           <Route path="/start-new-session" element={<PrivateRoute><StartNewSession /></PrivateRoute>} />
+          <Route path="/therapist-profile/:therapistId" element={<PrivateRoute><TherapistProfileView /></PrivateRoute>} />
+          <Route path="/my-bookings" element={<PrivateRoute><MyBookings /></PrivateRoute>} /> {/* NEW: My Bookings Page */}
+
+          {/* NEW: Session History and Session Details Routes */}
+          <Route path="/session-history" element={<PrivateRoute><SessionHistory /></PrivateRoute>} />
+          <Route path="/session-details/:id" element={<PrivateRoute><SessionDetail /></PrivateRoute>} />
+
+          {/* Role-Specific Protected Routes - These routes require a specific role (e.g., 'patient' or 'therapist') */}
+          <Route path="/user-dashboard" element={<PrivateRoute requiredRole="patient"><UserDashboard /></PrivateRoute>} />
+          <Route path="/therapist-dashboard" element={<PrivateRoute requiredRole="therapist"><TherapistDashboard /></PrivateRoute>} />
+          <Route path="/therapist/profile/manage" element={<PrivateRoute requiredRole="therapist"><TherapistManageProfile /></PrivateRoute>} />
+          <Route path="/therapist/patients" element={<PrivateRoute requiredRole="therapist"><TherapistPatientsList /></PrivateRoute>} />
+          <Route path="/therapist/patient-session-details/:patientId" element={<PrivateRoute requiredRole="therapist"><PatientSessionDetails /></PrivateRoute>} />
+
+
         </Routes>
       </div>
       <Footer /> {/* Footer component placed outside of Routes */}

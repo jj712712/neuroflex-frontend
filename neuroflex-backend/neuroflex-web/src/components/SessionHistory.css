@@ -1,0 +1,129 @@
+/* src/components/SessionHistory.css */
+
+.session-history-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); /* Same gradient as navbar/footer */
+    color: #fff;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif; /* Consistent font */
+}
+
+.session-history-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.session-history-header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.session-list {
+    width: 100%;
+    max-width: 800px; /* Constrain width for readability */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spacing between cards */
+}
+
+.session-card {
+    background: rgba(255, 255, 255, 0.15); /* Slightly transparent white for contrast */
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.session-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4);
+}
+
+.session-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.session-card p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.session-card .summary-preview {
+    font-size: 0.95rem;
+    color: #c0c0c0;
+    font-style: italic;
+    max-height: 3em; /* Limit height for summary preview */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Keep summary on a single line for preview */
+}
+
+.no-sessions-message {
+    font-size: 1.3rem;
+    color: #fff;
+    text-align: center;
+    margin-top: 3rem;
+    opacity: 0.8;
+}
+
+.back-to-dashboard-button {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 3rem; /* Space from session list */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-dashboard-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Error message styling */
+.session-history-container.error {
+    background: linear-gradient(135deg, #d32f2f, #ef5350); /* Red gradient for errors */
+}
+
+.session-history-container.error p {
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .session-history-header h1 {
+        font-size: 2.2rem;
+    }
+    .session-card {
+        padding: 1rem;
+    }
+    .session-card h2 {
+        font-size: 1.5rem;
+    }
+    .session-card p {
+        font-size: 1rem;
+    }
+    .no-sessions-message {
+        font-size: 1.1rem;
+    }
+}

@@ -1,154 +1,116 @@
-// src/components/FindTherapist.js
-import React, { useState, useEffect } from 'react';
-import './FindTherapist.css'; // Import the themed CSS
-import { Link } from 'react-router-dom'; // For navigation
+import React, { useState, useEffect, useCallback } from 'react';
+import './FindTherapist.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Import your Firestore instance
+
 
 const FindTherapist = () => {
+    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedSpecialization, setSelectedSpecialization] = useState('');
     const [selectedApproach, setSelectedApproach] = useState('');
     const [selectedInsurance, setSelectedInsurance] = useState('');
-    const [sortBy, setSortBy] = useState('name'); // Default sorting
+    const [sortBy, setSortBy] = useState('name');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [therapists, setTherapists] = useState([]); // Initialize as empty array
+    const [therapists, setTherapists] = useState([]);
     const [specializations, setSpecializations] = useState([]);
     const [approaches, setApproaches] = useState([]);
     const [insurances, setInsurances] = useState([]);
 
-    // Simulate fetching data from an API
+    const handleSearchChange = useCallback((e) => {
+        setSearchQuery(e.target.value);
+    }, []);
+
+    const handleSpecializationChange = useCallback((e) => {
+        setSelectedSpecialization(e.target.value);
+    }, []);
+
+    const handleApproachChange = useCallback((e) => {
+        setSelectedApproach(e.target.value);
+    }, []);
+
+    const handleInsuranceChange = useCallback((e) => {
+        setSelectedInsurance(e.target.value);
+    }, []);
+
+    const handleSortChange = useCallback((e) => {
+        setSortBy(e.target.value);
+    }, []);
+
     useEffect(() => {
-        const fetchTherapistData = async () => {
+        const fetchTherapistDataFromFirestore = async () => {
             setLoading(true);
             setError(null);
             try {
-                // In a real app, this would be an API call
-                const mockTherapistData = [
-                    {
-                        id: 1,
-                        name: 'Dr. Anya Sharma',
-                        specialization: 'Anxiety Disorders',
-                        availability: 'Mon-Fri',
-                        credentials: 'PhD, LPC',
-                        approaches: ['CBT', 'ACT'],
-                        bio: 'Experienced in treating anxiety and related disorders...',
-                        languages: ['English', 'Hindi'],
-                        photo: '/images/therapist_anya.jpg',
-                        fees: 120,
-                        insurance: ['Aetna', 'Cigna'],
-                        rating: 4.8,
-                        experience: 10,
-                        location: 'Karachi', // Example location
-                    },
-                    {
-                        id: 2,
-                        name: 'Dr. Ben Carter',
-                        specialization: 'Depression',
-                        availability: 'Tue-Sat',
-                        credentials: 'PsyD',
-                        approaches: ['Psychodynamic'],
-                        bio: 'Compassionate therapist specializing in mood disorders...',
-                        languages: ['English'],
-                        photo: '/images/therapist_ben.jpg',
-                        fees: 150,
-                        insurance: ['Blue Cross', 'Aetna'],
-                        rating: 4.5,
-                        experience: 8,
-                        location: 'Lahore', // Example location
-                    },
-                    {
-                        id: 3,
-                        name: 'Dr. Chloe Davis',
-                        specialization: 'Stress Management',
-                        availability: 'Wed-Sun',
-                        credentials: 'MSW, LCSW',
-                        approaches: ['Mindfulness-Based Therapy'],
-                        bio: 'Helping individuals manage stress and improve well-being...',
-                        languages: ['English', 'Urdu'],
-                        photo: '/images/therapist_chloe.jpg',
-                        fees: 100,
-                        insurance: ['Cigna'],
-                        rating: 4.9,
-                        experience: 12,
-                        location: 'Islamabad', // Example location
-                    },
-                    {
-                        id: 4,
-                        name: 'Dr. Ethan Ford',
-                        specialization: 'Anxiety Disorders',
-                        availability: 'Mon-Thu',
-                        credentials: 'MA, LMFT',
-                        approaches: ['CBT', 'DBT'],
-                        bio: 'Dedicated to providing effective therapy for anxiety and trauma...',
-                        languages: ['English'],
-                        photo: '/images/therapist_ethan.jpg',
-                        fees: 130,
-                        insurance: ['Blue Cross'],
-                        rating: 4.6,
-                        experience: 7,
-                        location: 'Karachi', // Example location
-                    },
-                    // Add more mock data
-                ];
+                const usersRef = collection(db, 'users');
+                const q = query(
+                    usersRef,
+                    where('role', '==', 'therapist'),
+                    where('isPublic', '==', true)
+                );
+                const querySnapshot = await getDocs(q);
 
-                setTherapists(mockTherapistData);
-                // Extract unique specializations, approaches, and insurances
-                const uniqueSpecializations = [...new Set(mockTherapistData.map(t => t.specialization))];
-                const uniqueApproaches = [...new Set(mockTherapistData.flatMap(t => t.approaches))];
-                const uniqueInsurances = [...new Set(mockTherapistData.flatMap(t => t.insurance))];
+                const therapistData = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
+                setTherapists(therapistData);
+
+                const uniqueSpecializations = [...new Set(therapistData.flatMap(t => t.specializations || []))]
+                    .filter(Boolean)
+                    .sort();
+                const uniqueApproaches = [...new Set(therapistData.flatMap(t => t.approaches || []))]
+                    .filter(Boolean)
+                    .sort();
+                const uniqueInsurances = [...new Set(therapistData.flatMap(t => t.insuranceAccepted || []))]
+                    .filter(Boolean)
+                    .sort();
 
                 setSpecializations(uniqueSpecializations);
                 setApproaches(uniqueApproaches);
                 setInsurances(uniqueInsurances);
-            } catch (error) {
-                console.error('Error fetching therapists:', error);
-                setError('Failed to load therapists.');
+
+            } catch (err) {
+                console.error('Error fetching therapists:', err);
+                setError('Failed to load therapists. ' + err.message);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchTherapistData();
+        fetchTherapistDataFromFirestore();
     }, []);
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    const handleSpecializationChange = (event) => {
-        setSelectedSpecialization(event.target.value);
-    };
-
-    const handleApproachChange = (event) => {
-        setSelectedApproach(event.target.value);
-    };
-
-    const handleInsuranceChange = (event) => {
-        setSelectedInsurance(event.target.value);
-    };
-
-    const handleSortChange = (event) => {
-        setSortBy(event.target.value);
-    };
-
     const filteredTherapists = therapists.filter(therapist => {
-        const nameMatch = therapist.name.toLowerCase().includes(searchQuery.toLowerCase());
-        const specializationMatch = selectedSpecialization === '' || therapist.specialization === selectedSpecialization;
-        const approachMatch = selectedApproach === '' || therapist.approaches.includes(selectedApproach);
-        const insuranceMatch = selectedInsurance === '' || therapist.insurance.includes(selectedInsurance);
+        const nameMatch = therapist.fullName?.toLowerCase().includes(searchQuery.toLowerCase()) || false;
+        const specializationMatch = selectedSpecialization === '' || (therapist.specializations && therapist.specializations.includes(selectedSpecialization));
+        const approachMatch = selectedApproach === '' || (therapist.approaches && therapist.approaches.includes(selectedApproach));
+        const insuranceMatch = selectedInsurance === '' || (therapist.insuranceAccepted && therapist.insuranceAccepted.includes(selectedInsurance));
         return nameMatch && specializationMatch && approachMatch && insuranceMatch;
     });
 
     const sortedTherapists = [...filteredTherapists].sort((a, b) => {
         if (sortBy === 'name') {
-            return a.name.localeCompare(b.name);
+            return (a.fullName || '').localeCompare(b.fullName || '');
         } else if (sortBy === 'rating') {
-            return b.rating - a.rating;
+            return (b.averageRating || 0) - (a.averageRating || 0);
         } else if (sortBy === 'experience') {
-            return b.experience - a.experience;
+            return (b.yearsExperience || 0) - (a.yearsExperience || 0);
         }
         return 0;
     });
+
+    const formatAvailability = (schedule) => {
+        if (!schedule || schedule.length === 0) return 'Not specified';
+
+        return schedule
+            .filter(day => day.available)
+            .map(day => `${day.day.substring(0, 3)} (${day.startTime}-${day.endTime})`)
+            .join(', ');
+    };
 
     if (loading) {
         return <div className="loading-indicator">Loading therapists...</div>;
@@ -157,6 +119,8 @@ const FindTherapist = () => {
     if (error) {
         return <div className="error-message">{error}</div>;
     }
+
+    // ... (previous imports and component logic remain unchanged) ...
 
     return (
         <div className="find-therapist-container">
@@ -212,28 +176,41 @@ const FindTherapist = () => {
             </div>
 
             <ul className="therapist-list">
-                {sortedTherapists.map(therapist => (
-                    <li key={therapist.id} className="therapist-card">
-                        {therapist.photo && <img src={therapist.photo} alt={therapist.name} className="therapist-photo" />}
-                        <div className="therapist-info">
-                            <Link to={`/therapist-profile/${therapist.id}`} className="therapist-name-link">
-                                <span className="therapist-name">{therapist.name}</span>
-                            </Link>
-                            <span className="therapist-credentials">{therapist.credentials}</span>
-                            <span className="therapist-specialization">Specialization: {therapist.specialization}</span>
-                            <span>Approaches: {therapist.approaches.join(', ')}</span>
-                            <span>Accepts Insurance: {therapist.insurance.join(', ')}</span>
-                            <span className="therapist-availability">Availability: {therapist.availability}</span>
-                            {therapist.rating && <span>Rating: {therapist.rating}</span>}
-                            {therapist.experience && <span>Experience: {therapist.experience} years</span>}
-                            {therapist.location && <span>Location: {therapist.location}</span>}
-                        </div>
-                        <Link to={`/therapist-profile/${therapist.id}`} className="select-therapist-button">
-                            View Profile
-                        </Link>
-                    </li>
-                ))}
-                {sortedTherapists.length === 0 && <p className="no-therapists">No therapists found matching your criteria.</p>}
+                {sortedTherapists.length > 0 ? (
+                    sortedTherapists.map(therapist => (
+                        <li key={therapist.id} className="therapist-card">
+                            <img
+                                src={therapist.profilePhotoUrl || '/images/default-avatar.png'} // Assumes default-avatar.png is in your public/images folder
+                                alt={therapist.fullName || 'Profile Picture'}
+                                className="therapist-photo"
+                            />
+                            <div className="therapist-info">
+                                <Link to={`/therapist-profile/${therapist.id}`} className="therapist-name-link">
+                                    <span className="therapist-name">{therapist.fullName}</span>
+                                </Link>
+                                <span className="therapist-credentials">{therapist.designation}</span>
+                                <span className="therapist-specialization">
+                                    Specialization: {therapist.specializations?.join(', ') || 'N/A'}
+                                </span>
+                                <span className="therapist-availability">
+                                    Available: {formatAvailability(therapist.availabilitySchedule)}
+                                </span>
+                                {therapist.yearsExperience && <span>Experience: {therapist.yearsExperience} years</span>}
+                                {therapist.averageRating && <span>Rating: {therapist.averageRating.toFixed(1)}/5</span>}
+                                {therapist.clinicalLocation?.city && <span>Location: {therapist.clinicalLocation.city}, {therapist.clinicalLocation.state}</span>}
+                            </div>
+                            <div className="therapist-actions">
+                                {/* MODIFICATION START: Removed the "Book Session" button */}
+                                <Link to={`/therapist-profile/${therapist.id}`} className="select-therapist-button">
+                                    View Profile
+                                </Link>
+                                {/* MODIFICATION END */}
+                            </div>
+                        </li>
+                    ))
+                ) : (
+                    <p className="no-therapists">No therapists found matching your criteria.</p>
+                )}
             </ul>
         </div>
     );

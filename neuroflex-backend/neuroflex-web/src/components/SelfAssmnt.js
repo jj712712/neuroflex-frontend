@@ -748,8 +748,8 @@ const SelfAssmnt = () => {
                             renderResponseItem(key, value)
                         )}
                     </div>
-                    <button onClick={() => navigate('/book-session')} className="book-session-button">
-                        Book a Session for Neurofeedback
+                    <button onClick={() => navigate('/find-therapist')} className="book-session-button">
+                        Find a Therapist
                     </button>
                 </div>
             )}
