@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Import your Firestore instance
 
-
 const FindTherapist = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
@@ -18,6 +17,15 @@ const FindTherapist = () => {
     const [specializations, setSpecializations] = useState([]);
     const [approaches, setApproaches] = useState([]);
     const [insurances, setInsurances] = useState([]);
+
+    // Helper to get initials for placeholder
+    const getInitials = useCallback((fullName) => {
+        if (!fullName) return '';
+        const names = fullName.split(' ').filter(n => n); // Split by space and remove empty strings
+        if (names.length === 0) return '';
+        if (names.length === 1) return names[0].charAt(0).toUpperCase();
+        return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
+    }, []);
 
     const handleSearchChange = useCallback((e) => {
         setSearchQuery(e.target.value);
@@ -59,6 +67,7 @@ const FindTherapist = () => {
 
                 setTherapists(therapistData);
 
+                // Extract unique options for filters
                 const uniqueSpecializations = [...new Set(therapistData.flatMap(t => t.specializations || []))]
                     .filter(Boolean)
                     .sort();
@@ -82,7 +91,7 @@ const FindTherapist = () => {
         };
 
         fetchTherapistDataFromFirestore();
-    }, []);
+    }, []); // 'db' is a stable reference, no need to include in dependencies
 
     const filteredTherapists = therapists.filter(therapist => {
         const nameMatch = therapist.fullName?.toLowerCase().includes(searchQuery.toLowerCase()) || false;
@@ -120,70 +129,94 @@ const FindTherapist = () => {
         return <div className="error-message">{error}</div>;
     }
 
-    // ... (previous imports and component logic remain unchanged) ...
-
     return (
         <div className="find-therapist-container">
             <h1>Find a Therapist</h1>
 
             <div className="filter-section">
-                <input
-                    type="text"
-                    placeholder="Search by name"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="filter-input"
-                />
-                <select
-                    value={selectedSpecialization}
-                    onChange={handleSpecializationChange}
-                    className="filter-select"
-                >
-                    <option value="">All Specializations</option>
-                    {specializations.map(spec => (
-                        <option key={spec} value={spec}>{spec}</option>
-                    ))}
-                </select>
-                <select
-                    value={selectedApproach}
-                    onChange={handleApproachChange}
-                    className="filter-select"
-                >
-                    <option value="">All Approaches</option>
-                    {approaches.map(approach => (
-                        <option key={approach} value={approach}>{approach}</option>
-                    ))}
-                </select>
-                <select
-                    value={selectedInsurance}
-                    onChange={handleInsuranceChange}
-                    className="filter-select"
-                >
-                    <option value="">All Insurances</option>
-                    {insurances.map(insurance => (
-                        <option key={insurance} value={insurance}>{insurance}</option>
-                    ))}
-                </select>
-                <select
-                    value={sortBy}
-                    onChange={handleSortChange}
-                    className="filter-select"
-                >
-                    <option value="name">Sort by Name</option>
-                    <option value="rating">Sort by Rating</option>
-                    <option value="experience">Sort by Experience</option>
-                </select>
+                <div className="filter-group">
+                    <label htmlFor="search-name" className="sr-only">Search by name</label>
+                    <input
+                        type="text"
+                        id="search-name"
+                        placeholder="Search by name"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className="filter-input"
+                    />
+                </div>
+                <div className="filter-group">
+                    <label htmlFor="specialization-select" className="sr-only">Specialization</label>
+                    <select
+                        id="specialization-select"
+                        value={selectedSpecialization}
+                        onChange={handleSpecializationChange}
+                        className="filter-select"
+                    >
+                        <option value="">All Specializations</option>
+                        {specializations.map(spec => (
+                            <option key={spec} value={spec}>{spec}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="filter-group">
+                    <label htmlFor="approach-select" className="sr-only">Approach</label>
+                    <select
+                        id="approach-select"
+                        value={selectedApproach}
+                        onChange={handleApproachChange}
+                        className="filter-select"
+                    >
+                        <option value="">All Approaches</option>
+                        {approaches.map(approach => (
+                            <option key={approach} value={approach}>{approach}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="filter-group">
+                    <label htmlFor="insurance-select" className="sr-only">Insurance</label>
+                    <select
+                        id="insurance-select"
+                        value={selectedInsurance}
+                        onChange={handleInsuranceChange}
+                        className="filter-select"
+                    >
+                        <option value="">All Insurances</option>
+                        {insurances.map(insurance => (
+                            <option key={insurance} value={insurance}>{insurance}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="filter-group">
+                    <label htmlFor="sort-select" className="sr-only">Sort By</label>
+                    <select
+                        id="sort-select"
+                        value={sortBy}
+                        onChange={handleSortChange}
+                        className="filter-select"
+                    >
+                        <option value="name">Sort by Name</option>
+                        <option value="rating">Sort by Rating</option>
+                        <option value="experience">Sort by Experience</option>
+                    </select>
+                </div>
             </div>
 
             <ul className="therapist-list">
                 {sortedTherapists.length > 0 ? (
                     sortedTherapists.map(therapist => (
                         <li key={therapist.id} className="therapist-card">
-                            <img
-                                src={therapist.profilePhotoUrl || '/images/default-avatar.png'} // Assumes default-avatar.png is in your public/images folder
-                                alt={therapist.fullName || 'Profile Picture'}
-                                className="therapist-photo"
-                            />
+                            {therapist.profilePhotoUrl ? (
+                                <img
+                                    src={therapist.profilePhotoUrl}
+                                    alt={therapist.fullName || 'Therapist Profile'}
+                                    className="therapist-photo"
+                                />
+                            ) : (
+                                <div className="therapist-photo-placeholder">
+                                    {getInitials(therapist.fullName)}
+                                </div>
+                            )}
                             <div className="therapist-info">
                                 <Link to={`/therapist-profile/${therapist.id}`} className="therapist-name-link">
                                     <span className="therapist-name">{therapist.fullName}</span>
@@ -200,11 +233,9 @@ const FindTherapist = () => {
                                 {therapist.clinicalLocation?.city && <span>Location: {therapist.clinicalLocation.city}, {therapist.clinicalLocation.state}</span>}
                             </div>
                             <div className="therapist-actions">
-                                {/* MODIFICATION START: Removed the "Book Session" button */}
                                 <Link to={`/therapist-profile/${therapist.id}`} className="select-therapist-button">
                                     View Profile
                                 </Link>
-                                {/* MODIFICATION END */}
                             </div>
                         </li>
                     ))

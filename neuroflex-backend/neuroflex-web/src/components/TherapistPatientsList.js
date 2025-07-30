@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, query, where, getDocs, doc, updateDoc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import './TherapistPatientsList.css';
-import ChatInterface from './ChatInterface';
+// import ChatInterface from './ChatInterface'; // Holding chat for now, so commenting out import
 
 // Reusable Modal Component
 const CustomModal = ({ title, message, onConfirm, onCancel, showConfirmButton, confirmText, loading, children, hideActions }) => {
@@ -21,8 +21,9 @@ const CustomModal = ({ title, message, onConfirm, onCancel, showConfirmButton, c
                                 {loading ? 'Processing...' : confirmText}
                             </button>
                         )}
+                        {/* Changed text for clarity: "Go Back" for cancel, "Close" for simple dismiss */}
                         <button className="cancel-button" onClick={onCancel} disabled={loading}>
-                            {showConfirmButton ? 'Cancel' : 'OK'}
+                            {showConfirmButton ? 'Go Back' : 'Close'}
                         </button>
                     </div>
                 )}
@@ -51,8 +52,9 @@ const TherapistPatientsList = () => {
     const [patientProfileLoading, setPatientProfileLoading] = useState(true);
     const [patientProfileError, setPatientProfileError] = useState(null);
 
-    const [showChatModal, setShowChatModal] = useState(false);
-    const [currentChatInfo, setCurrentChatInfo] = useState(null);
+    // Holding chat for now, so commenting out related states
+    // const [showChatModal, setShowChatModal] = useState(false);
+    // const [currentChatInfo, setCurrentChatInfo] = useState(null);
 
 
     const formatTimeForDisplay = (time24hr) => {
@@ -61,6 +63,15 @@ const TherapistPatientsList = () => {
         const date = new Date();
         date.setHours(hour, minute, 0, 0);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, hourCycle: 'h12' });
+    };
+
+    // Helper to get initials for placeholder
+    const getInitials = (fullName) => {
+        if (!fullName) return '';
+        const names = fullName.split(' ').filter(n => n); // Split by space and remove empty strings
+        if (names.length === 0) return '';
+        if (names.length === 1) return names[0].charAt(0).toUpperCase();
+        return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
     };
 
     const fetchTherapistBookings = useCallback(async (uid) => {
@@ -172,24 +183,33 @@ const TherapistPatientsList = () => {
         setCurrentBookingToAction(booking);
         setActionType(action);
         let message = '';
+        let confirmText = ''; // New variable for confirm button text
+
         switch (action) {
             case 'accepted':
                 message = `Are you sure you want to ACCEPT the session with ${booking.patientDetails.fullName || booking.patientName} on ${booking.slotDate.toLocaleDateString()} at ${formatTimeForDisplay(booking.slotTime)}?`;
+                confirmText = 'Confirm Acceptance';
                 break;
             case 'rejected':
                 message = `Are you sure you want to REJECT the session with ${booking.patientDetails.fullName || booking.patientName} on ${booking.slotDate.toLocaleDateString()} at ${formatTimeForDisplay(booking.slotTime)}? This action cannot be undone.`;
+                confirmText = 'Confirm Rejection';
                 break;
             case 'completed':
                 message = `Are you sure you want to mark the session with ${booking.patientDetails.fullName || booking.patientName} on ${booking.slotDate.toLocaleDateString()} at ${formatTimeForDisplay(booking.slotTime)} as COMPLETED?`;
+                confirmText = 'Confirm Completion';
                 break;
             case 'cancelled':
                 message = `Are you sure you want to CANCEL the session with ${booking.patientDetails.fullName || booking.patientName} on ${booking.slotDate.toLocaleDateString()} at ${formatTimeForDisplay(booking.slotTime)}? This will notify the patient.`;
+                confirmText = 'Confirm Cancellation'; // Clarified text
                 break;
             default:
                 message = 'Are you sure you want to perform this action?';
+                confirmText = 'Confirm';
         }
         setModalMessage(message);
         setShowActionModal(true);
+        // Pass confirmText to the modal
+        setCurrentBookingToAction(prev => ({ ...prev, actionConfirmText: confirmText }));
     };
 
     const confirmBookingAction = async () => {
@@ -273,8 +293,8 @@ const TherapistPatientsList = () => {
                 email: booking.patientEmail || 'N/A',
                 phoneNumber: booking.patientPhone || 'N/A',
                 gender: booking.patientGender || 'N/A',
-                dateOfBirth: booking.patientDateOfBirth || 'N/A',
-                address: booking.patientAddress || 'N/A',
+                dateOfBirth: booking.dateOfBirth || 'N/A', // Use booking.dateOfBirth here
+                address: booking.address || 'N/A', // Use booking.address here
                 reasonForBooking: booking.reasonForBooking || 'N/A',
                 problemArea: booking.problemArea || 'N/A',
                 bookedDate: booking.slotDate.toLocaleDateString(),
@@ -293,22 +313,23 @@ const TherapistPatientsList = () => {
         setPatientProfileError(null);
     };
 
-    const openChatModal = useCallback((patientId, patientName) => {
-        if (!therapistUid || !therapistName) {
-            setError("Therapist information not available to start chat.");
-            return;
-        }
-        setCurrentChatInfo({
-            patientId: patientId,
-            patientName: patientName,
-        });
-        setShowChatModal(true);
-    }, [therapistUid, therapistName]);
+    // Holding chat for now, so commenting out related functions
+    // const openChatModal = useCallback((patientId, patientName) => {
+    //     if (!therapistUid || !therapistName) {
+    //         setError("Therapist information not available to start chat.");
+    //         return;
+    //     }
+    //     setCurrentChatInfo({
+    //         patientId: patientId,
+    //         patientName: patientName,
+    //     });
+    //     setShowChatModal(true);
+    // }, [therapistUid, therapistName]);
 
-    const closeChatModal = () => {
-        setShowChatModal(false);
-        setCurrentChatInfo(null);
-    };
+    // const closeChatModal = () => {
+    //     setShowChatModal(false);
+    //     setCurrentChatInfo(null);
+    // };
 
 
     const groupedBookings = bookings.reduce((acc, booking) => {
@@ -367,19 +388,8 @@ const TherapistPatientsList = () => {
                                             </>
                                         )}
                                         <button className="action-button view-profile" onClick={() => openPatientProfile(booking)}>View Profile</button>
-                                        <button
-                                            className="action-button chat-button"
-                                            onClick={() => openChatModal(booking.patientId, booking.patientDetails.fullName || booking.patientName)}
-                                        >
-                                            Chat
-                                        </button>
-                                        {/* NEW: View Session History Button */}
-                                        <Link
-                                            to={`/therapist/patient-session-details/${booking.patientId}`}
-                                            className="action-button view-session-history-button"
-                                        >
-                                            Session History
-                                        </Link>
+                                        {/* Removed Chat Button */}
+                                        {/* Removed Session History Button */}
                                         {isPast && <span className="past-due-label">Past Due</span>}
                                     </div>
                                 </div>
@@ -414,22 +424,11 @@ const TherapistPatientsList = () => {
                                         {isPast ? (
                                             <button className="action-button complete" onClick={() => openActionModal(booking, 'completed')}>Mark Completed</button>
                                         ) : (
-                                            <button className="action-button cancel" onClick={() => openActionModal(booking, 'cancelled')}>Cancel Session</button>
+                                            <button className="action-button cancel-session" onClick={() => openActionModal(booking, 'cancelled')}>Cancel Session</button>
                                         )}
                                         <button className="action-button view-profile" onClick={() => openPatientProfile(booking)}>View Profile</button>
-                                        <button
-                                            className="action-button chat-button"
-                                            onClick={() => openChatModal(booking.patientId, booking.patientDetails.fullName || booking.patientName)}
-                                        >
-                                            Chat
-                                        </button>
-                                        {/* NEW: View Session History Button */}
-                                        <Link
-                                            to={`/therapist/patient-session-details/${booking.patientId}`}
-                                            className="action-button view-session-history-button"
-                                        >
-                                            Session History
-                                        </Link>
+                                        {/* Removed Chat Button */}
+                                        {/* Removed Session History Button */}
                                     </div>
                                 </div>
                             );
@@ -455,19 +454,8 @@ const TherapistPatientsList = () => {
                                 <p className={`status ${booking.status}`}>Status: {booking.status}</p>
                                 <div className="booking-actions">
                                     <button className="action-button view-profile" onClick={() => openPatientProfile(booking)}>View Profile</button>
-                                    <button
-                                        className="action-button chat-button"
-                                        onClick={() => openChatModal(booking.patientId, booking.patientDetails.fullName || booking.patientName)}
-                                    >
-                                        Chat
-                                    </button>
-                                    {/* NEW: View Session History Button */}
-                                    <Link
-                                        to={`/therapist/patient-session-details/${booking.patientId}`}
-                                        className="action-button view-session-history-button"
-                                    >
-                                        Session History
-                                    </Link>
+                                    {/* Removed Chat Button */}
+                                    {/* Removed Session History Button */}
                                 </div>
                             </div>
                         ))}
@@ -492,19 +480,8 @@ const TherapistPatientsList = () => {
                                 <p className={`status ${booking.status}`}>Status: {booking.status}</p>
                                 <div className="booking-actions">
                                     <button className="action-button view-profile" onClick={() => openPatientProfile(booking)}>View Profile</button>
-                                    <button
-                                        className="action-button chat-button"
-                                        onClick={() => openChatModal(booking.patientId, booking.patientDetails.fullName || booking.patientName)}
-                                    >
-                                        Chat
-                                    </button>
-                                    {/* NEW: View Session History Button */}
-                                    <Link
-                                        to={`/therapist/patient-session-details/${booking.patientId}`}
-                                        className="action-button view-session-history-button"
-                                    >
-                                        Session History
-                                    </Link>
+                                    {/* Removed Chat Button */}
+                                    {/* Removed Session History Button */}
                                 </div>
                             </div>
                         ))}
@@ -529,19 +506,8 @@ const TherapistPatientsList = () => {
                                 <p className={`status ${booking.status}`}>Status: {booking.status}</p>
                                 <div className="booking-actions">
                                     <button className="action-button view-profile" onClick={() => openPatientProfile(booking)}>View Profile</button>
-                                    <button
-                                        className="action-button chat-button"
-                                        onClick={() => openChatModal(booking.patientId, booking.patientDetails.fullName || booking.patientName)}
-                                    >
-                                        Chat
-                                    </button>
-                                    {/* NEW: View Session History Button */}
-                                    <Link
-                                        to={`/therapist/patient-session-details/${booking.patientId}`}
-                                        className="action-button view-session-history-button"
-                                    >
-                                        Session History
-                                    </Link>
+                                    {/* Removed Chat Button */}
+                                    {/* Removed Session History Button */}
                                 </div>
                             </div>
                         ))}
@@ -557,7 +523,7 @@ const TherapistPatientsList = () => {
                     onConfirm={confirmBookingAction}
                     onCancel={closeActionModal}
                     showConfirmButton={true}
-                    confirmText={actionType.charAt(0).toUpperCase() + actionType.slice(1)}
+                    confirmText={currentBookingToAction?.actionConfirmText || actionType.charAt(0).toUpperCase() + actionType.slice(1)} // Use specific text
                     loading={modalLoading}
                 />
             )}
@@ -567,7 +533,7 @@ const TherapistPatientsList = () => {
                 <CustomModal
                     title="Patient Profile"
                     onCancel={closePatientProfileModal}
-                    showConfirmButton={false}
+                    showConfirmButton={false} // No confirm button needed for profile view
                 >
                     {patientProfileLoading ? (
                         <p>Loading patient profile...</p>
@@ -579,7 +545,8 @@ const TherapistPatientsList = () => {
                                 <img src={selectedPatientProfile.profilePhotoUrl} alt={`${selectedPatientProfile.fullName}'s profile`} className="patient-profile-modal-photo" />
                             ) : (
                                 <div className="patient-profile-modal-photo-placeholder">
-                                    <img src={process.env.PUBLIC_URL + '/default-avatar.png'} alt="Default Avatar" />
+                                    {/* Use getInitials helper for placeholder */}
+                                    {getInitials(selectedPatientProfile.fullName)}
                                 </div>
                             )}
                             <h4>{selectedPatientProfile.fullName || 'N/A'}</h4>
@@ -592,7 +559,7 @@ const TherapistPatientsList = () => {
                             <h5>Booking Details:</h5>
                             <p><strong>Booked Date:</strong> {selectedPatientProfile.bookedDate || 'N/A'}</p>
                             <p><strong>Booked Time:</strong> {selectedPatientProfile.bookedTime || 'N/A'}</p>
-                            <p><strong>Booking Status:</strong> {selectedPatientProfile.bookingStatus || 'N/A'}</p>
+                            <p><strong>Booking Status:</strong> <span className={`status ${selectedPatientProfile.bookingStatus}`}>{selectedPatientProfile.bookingStatus}</span></p>
                             <p><strong>Problem Area:</strong> {selectedPatientProfile.problemArea || 'N/A'}</p>
                             <p><strong>Reason for Booking:</strong> {selectedPatientProfile.reasonForBooking || 'N/A'}</p>
                         </div>
@@ -602,13 +569,12 @@ const TherapistPatientsList = () => {
                 </CustomModal>
             )}
 
-            {/* Chat Modal */}
-            {showChatModal && currentChatInfo && (
+            {/* Holding chat for now */}
+            {/* {showChatModal && currentChatInfo && (
                 <CustomModal
-                    title=""
+                    title={`Chat with ${currentChatInfo.patientName}`}
                     onCancel={closeChatModal}
-                    showConfirmButton={false}
-                    hideActions={true}
+                    hideActions={true} // Hide default modal actions for chat
                 >
                     <ChatInterface
                         currentUserId={therapistUid}
@@ -619,7 +585,7 @@ const TherapistPatientsList = () => {
                         onClose={closeChatModal}
                     />
                 </CustomModal>
-            )}
+            )} */}
         </div>
     );
 };

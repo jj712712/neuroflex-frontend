@@ -1,75 +1,123 @@
 /* src/pages/TherapistManageProfile.css */
 
 .manage-profile-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: calc(100vh - 60px); /* Adjust based on navbar height */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px 20px 50px; /* Top padding for navbar, then side/bottom */
-  background: linear-gradient(135deg, #688580, #688580); /* Light gradient background */
-  color: #333;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #b1cbc7, #b1cbc7); /* Consistent background */
+    color: #333;
+    box-sizing: border-box;
 }
 
 .profile-form-card {
-  background-color: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px; /* Max width for the form card */
-  box-sizing: border-box; /* Include padding in width */
+    background-color: #f8fcfb;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    width: 100%;
+    max-width: 800px; /* Wider form for better layout */
+    margin-top: 20px; /* Space from top */
+    margin-bottom: 40px; /* Space at bottom */
 }
 
 .profile-form-card h2 {
-  text-align: center;
-  color: #194b45; /* Dark teal */
-  margin-bottom: 10px;
-  font-size: 2.2em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 2.5em;
+    color: #194b45;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .form-description {
-  text-align: center;
-  color: #555;
-  margin-bottom: 30px;
-  font-size: 1.1em;
+    font-size: 1.1em;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.5;
 }
 
+/* Success and Error Messages */
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #badbcc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 5px; /* For inline errors */
+    margin-bottom: 15px; /* For form summary error */
+    font-size: 0.9em;
+    text-align: left;
+    white-space: pre-wrap; /* Preserve newlines for summary */
+    animation: fadeIn 0.5s ease-out;
+}
+
+.error-message.form-summary {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Form Sections */
 .form-section {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px 30px;
-  margin-bottom: 30px;
-  background-color: #fcfcfc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .form-section legend {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #c3a36b; /* Gold/brown accent */
-  padding: 0 10px;
-  margin-left: -10px; /* Adjust to align with fieldset border */
+    font-size: 1.8em;
+    color: #33776b;
+    padding: 0 15px;
+    font-weight: bold;
+    margin-left: 15px;
+    border-bottom: none; /* Remove default legend border */
 }
 
-.form-section .section-description {
-  font-size: 0.95em;
-  color: #777;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  text-align: left; /* Align description within section */
+.section-description {
+    font-size: 0.95em;
+    color: #666;
+    margin-top: -10px; /* Pull closer to legend */
+    margin-bottom: 25px;
+    text-align: left;
+    padding-left: 15px;
 }
 
+/* Form Groups */
 .form-group {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    position: relative; /* For error positioning */
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #194b45; /* Dark teal for labels */
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 1em;
 }
 
 .form-group input[type="text"],
@@ -79,209 +127,343 @@
 .form-group input[type="date"],
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1em;
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  color: #333;
-  background-color: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="tel"]:focus,
-.form-group input[type="number"]:focus,
-.form-group input[type="date"]:focus,
+.form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #33776b; /* Lighter teal on focus */
-  box-shadow: 0 0 0 3px rgba(51, 119, 107, 0.2); /* Soft shadow on focus */
-  outline: none;
+    border-color: #33776b;
+    box-shadow: 0 0 0 3px rgba(51, 119, 107, 0.2);
+    outline: none;
 }
 
-/* Specific styling for multi-selects */
-.form-group select[multiple] {
-  min-height: 120px; /* Give enough space for multiple options */
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
 .form-group small {
-  display: block;
-  margin-top: 5px;
-  color: #777;
-  font-size: 0.85em;
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.85em;
 }
 
-/* Address group layout */
-.address-group input {
-  margin-bottom: 10px; /* Space between address fields */
+/* Inline Form Groups */
+.form-group-inline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-/* Profile Photo Upload */
+/* Avatar Upload */
 .avatar-upload-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .avatar-preview-area {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  margin-bottom: 15px;
-  border: 3px solid #c3a36b;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 3px solid #b1cbc7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .profile-photo-preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-photo-placeholder {
-  color: #777;
-  font-size: 0.9em;
-  text-align: center;
-  padding: 10px;
+    font-size: 2.5em;
+    color: #555;
+    font-weight: bold;
+    text-align: center;
+    line-height: 120px; /* Vertically center text */
 }
 
-/* File input styling (can be tricky to style directly, often wrapped or hidden) */
-.form-group input[type="file"] {
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-size: 0.95em;
-  color: #194b45;
-  margin-top: 5px;
+.avatar-upload-group input[type="file"] {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px dashed #b1cbc7;
+    border-radius: 8px;
+    background-color: #f0f8f7;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #33776b;
 }
 
-.form-group input[type="file"]::-webkit-file-upload-button {
-  background-color: #33776b;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.avatar-upload-group input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+    margin: 0;
 }
-
-.form-group input[type="file"]::-webkit-file-upload-button:hover {
-  background-color: #194b45;
+.avatar-upload-group input[type="file"]::before {
+    content: 'Upload New Photo';
+    display: inline-block;
+    background: linear-gradient(45deg, #c3a36b, #d8bc88);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-.uploaded-files-preview {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px dashed #ccc;
-  border-radius: 5px;
-}
-
-.uploaded-files-preview p {
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #444;
-  text-align: left;
-}
-
-.uploaded-files-preview ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  padding: 0;
-}
-
-.uploaded-files-preview li {
-  font-size: 0.9em;
-  color: #666;
+.avatar-upload-group input[type="file"]:hover::before {
+    background: linear-gradient(45deg, #d8bc88, #c3a36b);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 
-/* Form Actions Buttons */
-.form-actions {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+/* Multi-select display */
+.selected-items-display {
+    background-color: #e0f2f0;
+    border: 1px solid #b1cbc7;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #333;
 }
 
-.save-button,
-.cancel-button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+.selected-items-display ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.save-button {
-  background-color: #194b45; /* Dark teal */
-  color: white;
-  box-shadow: 0 4px 8px rgba(25, 75, 69, 0.2);
+.selected-items-display li {
+    background-color: #194b45; /* Darker green for tags */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
 }
 
-.save-button:hover {
-  background-color: #33776b; /* Lighter teal on hover */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(25, 75, 69, 0.3);
-}
-
-.cancel-button {
-  background-color: #ccc;
-  color: #333;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.cancel-button:hover {
-  background-color: #bbb;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-  .profile-form-card {
-    padding: 20px;
-    margin: 0 10px; /* Add some side margin on smaller screens */
-  }
-
-  .profile-form-card h2 {
-    font-size: 1.8em;
-  }
-
-  .form-section {
-    padding: 15px;
-  }
-
-  .form-section legend {
-    font-size: 1.2em;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 10px;
-  }
-
-  .form-actions {
+/* Availability Schedule */
+.availability-schedule {
+    display: flex;
     flex-direction: column;
     gap: 15px;
-  }
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #f5fcfb;
+    border: 1px solid #e6f0ee;
+    border-radius: 10px;
+}
 
-  .save-button,
-  .cancel-button {
+.availability-day {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.availability-day .checkbox-label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #333;
+    min-width: 100px; /* Ensure day name has enough space */
+}
+
+.availability-day input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    accent-color: #194b45; /* Green accent for checkbox */
+}
+
+.availability-day .time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1; /* Allow time inputs to take space */
+    flex-wrap: wrap;
+}
+
+.availability-day .time-inputs input[type="time"] {
+    flex: 1; /* Allow inputs to grow */
+    min-width: 120px; /* Minimum width for time input */
+    padding: 8px 10px;
+    font-size: 0.95em;
+}
+
+/* Uploaded Documents Display */
+.uploaded-docs-display {
+    background-color: #f0f8f7;
+    border: 1px solid #b1cbc7;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.uploaded-docs-display ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.uploaded-docs-display li {
+    margin-bottom: 5px;
+}
+
+.uploaded-docs-display a {
+    color: #33776b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.uploaded-docs-display a:hover {
+    text-decoration: underline;
+}
+
+/* Save Button */
+.save-button {
+    display: block;
     width: 100%;
-    padding: 10px;
-    font-size: 1em;
-  }
+    padding: 15px 25px;
+    background: linear-gradient(45deg, #c3a36b, #d8bc88); /* Gold/Brown gradient */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+}
+
+.save-button:hover:not(:disabled) {
+    background: linear-gradient(45deg, #d8bc88, #c3a36b);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.save-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .manage-profile-container {
+        padding: 20px 15px;
+    }
+
+    .profile-form-card {
+        padding: 25px;
+        border-radius: 15px;
+    }
+
+    .profile-form-card h2 {
+        font-size: 2em;
+    }
+
+    .form-description {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .form-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .form-section legend {
+        font-size: 1.5em;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .section-description {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .form-group-inline {
+        grid-template-columns: 1fr; /* Stack inline groups vertically */
+        gap: 15px;
+    }
+
+    .avatar-upload-group {
+        width: 100%;
+    }
+
+    .avatar-preview-area {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-photo-placeholder {
+        font-size: 2em;
+        line-height: 100px;
+    }
+
+    .availability-day {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .availability-day .checkbox-label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .availability-day .time-inputs {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .availability-day .time-inputs input[type="time"] {
+        flex: none; /* Disable flex growth */
+        width: calc(50% - 10px); /* Adjust width for two inputs */
+        min-width: unset;
+    }
+
+    .save-button {
+        font-size: 1.1em;
+        padding: 12px 20px;
+        margin-top: 30px;
+    }
 }

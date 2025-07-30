@@ -1,54 +1,58 @@
 /* src/components/FindTherapist.css */
 
 .find-therapist-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif; /* Consistent font with TherapistManageProfile */
     min-height: calc(100vh - 120px); /* Adjust based on navbar/footer height */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px 20px; /* More balanced padding */
-    background: linear-gradient(135deg, #b1cbc7, #b1cbc7); 
-    color: #f0f8f5;
+    background: linear-gradient(135deg, #b1cbc7, #b1cbc7);
+    color: #333; /* Darker text for better contrast on light background */
     width: 100%;
     max-width: 1200px; /* Slightly wider for better spacing */
     border-radius: 25px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
     box-sizing: border-box;
     margin: 60px auto 20px; /* Centered with top margin for navbar clearance */
-    position: relative; /* For absolute positioning of elements if needed */
-    overflow: hidden; /* To contain potential child overflows */
+    position: relative;
+    overflow: hidden;
 }
 
 h1 {
-    color:#194b45;; /* Gold/warm color for headings */
+    color: #194b45; /* Dark green for headings */
     margin-bottom: 30px;
-    font-size: 2.8em; /* Larger heading */
+    font-size: 2.8em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
     font-weight: 700;
 }
 
 .filter-section {
-    display: flex;
-    flex-wrap: wrap; /* Allows filters to wrap on smaller screens */
-    gap: 15px; /* Increased gap for better spacing */
+    display: grid; /* Use grid for better control over layout */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 15px;
     margin-bottom: 30px;
-    width: 100%; /* Take full width of container */
-    max-width: 900px; /* Max width for filter row */
+    width: 100%;
+    max-width: 1000px; /* Max width for filter row */
     justify-content: center;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly translucent background */
+    padding: 20px; /* Increased padding */
+    background-color: #f8fcfb; /* Light background for filter section */
     border-radius: 15px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border: 1px solid #e0e0e0; /* Subtle border */
+}
+
+.filter-group {
+    position: relative; /* For custom dropdown arrow positioning */
 }
 
 .filter-input,
 .filter-select {
-    padding: 12px 18px; /* More padding */
-    border: 1px solid #c3a36b; /* Border color from button */
-    border-radius: 25px; /* More rounded */
-    flex-grow: 1;
-    min-width: 180px; /* Increased min-width for better usability */
+    width: 100%; /* Ensure full width within its grid column */
+    padding: 12px 18px;
+    border: 1px solid #b1cbc7; /* Light green border */
+    border-radius: 10px; /* Less rounded than before, more modern */
     font-size: 1.05em;
     color: #333;
     background-color: white;
@@ -67,65 +71,88 @@ h1 {
 .filter-input:focus,
 .filter-select:focus {
     outline: none;
-    border-color: #345c58;
-    box-shadow: 0 0 0 3px rgba(195, 163, 107, 0.4);
+    border-color: #33776b; /* Darker green on focus */
+    box-shadow: 0 0 0 3px rgba(51, 119, 107, 0.2); /* Soft focus ring */
 }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 
 .therapist-list {
     list-style: none;
     padding: 0;
     width: 100%;
-    max-width: 1000px; /* Slightly narrower than container for content alignment */
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Gap between cards */
+    gap: 20px;
 }
 
 .therapist-card {
-    background: linear-gradient(145deg, #ffffff, #f3f3f3); /* light paper look */
+    background: linear-gradient(145deg, #ffffff, #f3f3f3);
     border: none;
-    border-radius: 20px; /* Slightly less rounded than container */
-    padding: 20px;
+    border-radius: 20px;
+    padding: 25px; /* Increased padding for more breathing room */
     display: flex;
-    flex-direction: row; /* Default for larger screens */
+    flex-direction: row;
     align-items: center;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly softer shadow for cards */
     color: #333;
-    
     transition: all 0.3s ease-in-out;
     transform-style: preserve-3d;
-    
 }
 
-
 .therapist-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-5px) scale(1.01); /* Slightly less aggressive hover */
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .therapist-photo {
-    width: 90px; /* Larger photo */
-    height: 90px;
+    width: 100px; /* Slightly larger photo */
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 30px; /* More space */
-    border: 3px solid #c3a36b; /* Thicker border */
-    flex-shrink: 0; /* Prevent photo from shrinking */
-    font-size: 0.8em;
+    margin-right: 30px;
+    border: 4px solid #c3a36b; /* Thicker, gold border */
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for photo */
+}
+
+.therapist-photo-placeholder {
+    width: 100px; /* Match photo size */
+    height: 100px;
+    border-radius: 50%;
+    background-color: #e0e0e0; /* Light gray background */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 600;
+    font-size: 2.2em; /* Larger initials */
+    color: #555;
+    font-weight: bold;
     text-transform: uppercase;
-    font-family: 'Segoe UI', sans-serif;
+    margin-right: 30px;
+    border: 4px solid #c3a36b; /* Consistent gold border */
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .therapist-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 4px; /* Space between lines of info */
+    gap: 6px; /* Increased space between lines of info */
 }
 
 .therapist-name-link {
@@ -140,15 +167,15 @@ h1 {
 
 .therapist-name {
     color: #194b45; /* Darker green for name */
-    font-size: 1.6em; /* Larger name */
+    font-size: 1.8em; /* Larger name */
     margin-bottom: 2px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
 
 .therapist-credentials {
-    color: #666; /* Softer gray */
-    font-size: 0.95em;
+    color: #666;
+    font-size: 1em; /* Slightly larger credentials */
     font-style: italic;
     margin-bottom: 2px;
 }
@@ -157,57 +184,44 @@ h1 {
 .therapist-availability {
     font-style: italic;
     font-weight: 500;
-    color: #268b7d;
-    font-size: 0.9em;
+    color: #268b7d; /* A slightly brighter green */
+    font-size: 0.95em; /* Slightly larger */
 }
 
 .therapist-info span:not(.therapist-name):not(.therapist-credentials):not(.therapist-specialization):not(.therapist-availability) {
-    font-size: 0.85em;
+    font-size: 0.9em; /* Consistent size for other info */
     color: #555;
 }
 
 .therapist-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between buttons */
-    margin-left: 20px; /* Space from info */
+    gap: 12px; /* Increased space between buttons */
+    margin-left: 30px; /* More space from info */
     flex-shrink: 0;
 }
 
-.select-therapist-button,
-.book-session-button {
-    background: linear-gradient(45deg, #c3a36b, #e0b06b);
+.select-therapist-button {
+    background: linear-gradient(45deg, #c3a36b, #d8bc88); /* Gold/Brown gradient */
     color: white;
-    padding: 12px 20px;
-    border-radius: 30px; /* Pill-shaped buttons */
+    padding: 14px 25px; /* Larger padding for buttons */
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: 1.05em; /* Slightly larger font */
     font-weight: bold;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px; /* More prominent letter spacing */
     transition: all 0.3s ease;
-    text-decoration: none; /* For Link component */
+    text-decoration: none;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-weight: 600;
-    letter-spacing: 1px;
-    border: 2px solid #c3a36b;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #c3a36b; /* Solid border matching gradient start */
 }
 
-.select-therapist-button:hover,
-.book-session-button:hover {
+.select-therapist-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(45deg, #e0b06b, #c3a36b); /* Reverse gradient on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #d8bc88, #c3a36b); /* Reverse gradient on hover */
 }
-
-.book-session-button {
-    background: linear-gradient(45deg, #194b45, #33776b); /* Different color for book button */
-}
-
-.book-session-button:hover {
-    background: linear-gradient(45deg, #33776b, #194b45);
-}
-
 
 .no-therapists {
     color: #466e6a;
@@ -215,22 +229,36 @@ h1 {
     margin-top: 30px;
     font-size: 1.2em;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter background for message */
     border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .loading-indicator,
 .error-message {
     text-align: center;
     margin-top: 40px;
-    color: #f0f8f5;
-    font-size: 1.3em;
+    color: #721c24; /* Error color for error message */
+    background-color: #f8d7da; /* Error background */
+    border: 1px solid #f5c6cb;
+    font-size: 1.1em; /* Slightly smaller for consistency */
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.loading-indicator {
+    color: #155724; /* Success color for loading */
+    background-color: #d4edda;
+    border: 1px solid #badbcc;
 }
 
 /* Responsive adjustments */
+@media (max-width: 900px) {
+    .filter-section {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust columns for medium screens */
+    }
+}
+
 @media (max-width: 768px) {
     .find-therapist-container {
         padding: 20px 15px;
@@ -239,47 +267,53 @@ h1 {
     }
 
     h1 {
-        font-size: 2em;
-        margin-bottom: 20px;
+        font-size: 2.2em;
+        margin-bottom: 25px;
     }
 
     .filter-section {
-        flex-direction: column; /* Stack filters vertically on small screens */
+        grid-template-columns: 1fr; /* Stack filters vertically on small screens */
         gap: 10px;
-        padding: 10px;
+        padding: 15px;
     }
 
     .filter-input,
     .filter-select {
-        min-width: unset; /* Remove min-width constraint */
-        width: 100%; /* Take full width */
+        min-width: unset;
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 1em;
     }
-    .filter-input:hover,
-    .filter-select:hover {
-        border-color: #268b7d;
-        box-shadow: 0 0 5px rgba(38, 139, 125, 0.3);
-    }
+
     .therapist-card {
         flex-direction: column; /* Stack elements vertically in card */
         text-align: center;
-        padding: 15px;
+        padding: 20px;
         border-radius: 15px;
     }
 
-    .therapist-photo {
+    .therapist-photo,
+    .therapist-photo-placeholder {
         margin: 0 auto 15px auto; /* Center photo and add bottom margin */
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
+        font-size: 1.8em;
     }
 
     .therapist-info {
         align-items: center; /* Center text within info block */
         margin-bottom: 15px;
-        gap: 3px;
+        gap: 4px;
     }
 
     .therapist-name {
-        font-size: 1.3em;
+        font-size: 1.5em;
+    }
+
+    .therapist-credentials,
+    .therapist-specialization,
+    .therapist-availability {
+        font-size: 0.9em;
     }
 
     .therapist-actions {
@@ -287,21 +321,19 @@ h1 {
         justify-content: center;
         width: 100%;
         margin-left: 0;
-        gap: 8px;
+        gap: 10px;
         flex-wrap: wrap;
     }
 
-    .select-therapist-button,
-    .book-session-button {
+    .select-therapist-button {
         flex-grow: 1; /* Allow buttons to expand */
-        padding: 10px 15px;
-        font-size: 0.9em;
+        padding: 12px 18px;
+        font-size: 0.95em;
     }
 }
 
 @media (max-width: 480px) {
-    .select-therapist-button,
-    .book-session-button {
+    .select-therapist-button {
         width: 100%; /* Stack buttons on very small screens */
     }
 }

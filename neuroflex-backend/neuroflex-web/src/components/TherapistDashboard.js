@@ -41,7 +41,7 @@ const TherapistDashboard = () => {
             {/* Updated Link: The "Patient Session" button now leads to the TherapistPatientsList
                 This is a more intuitive flow, as therapists will select a specific patient
                 from the list to view their detailed session history. */}
-            <Link to="/therapist/patients">Patient Session History</Link>
+            <Link to="/therapist/session-overview">Patient Session History</Link>
           </li>
 
           {/* III. Profile & Practice Management */}

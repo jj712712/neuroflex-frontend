@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     padding: 30px 20px;
-    background: linear-gradient(135deg, #b1cbc7, #b1cbc7);
+    background: linear-gradient(135deg, #b1cbc7, #b1cbc7); /* Previous preferred green gradient */
     color: #333;
     width: 100%;
     max-width: 900px;
@@ -20,78 +20,82 @@
 }
 
 .patient-session-details-container h1, .patient-session-details-container h2 {
-    color: #194b45;
-    margin-bottom: 20px;
+    color: #194b45; /* Previous preferred text color */
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .patient-session-details-container h1 {
-    font-size: 2.5em;
+    /* Reverted to previous clear text, but increased font size */
+    font-size: 2.8em; /* Slightly larger font size */
+    margin-top: 0;
+    margin-left: 20px;
+    text-align: left;
+    color: #194b45; /* Solid color, no gradient/blur */
+    font-weight: bold; /* Keep bold for emphasis */
 }
 
 .patient-session-details-container h2 {
     font-size: 2em;
-    border-bottom: 2px solid #b1cbc7;
+    border-bottom: 2px solid #b1cbc7; /* Previous preferred border color */
     padding-bottom: 10px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .patient-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Centered the entire header block */
+    padding-left: 0;
 }
 
 .patient-photo-lg {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #c3a36b;
-    margin-bottom: 15px;
+    border: 3px solid #b0b0b0;
+    margin-right: 15px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .patient-photo-lg-placeholder {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background-color: #e0e0e0;
+    background: linear-gradient(45deg, #7a8c8c, #9aa8a8); /* Subtle greyish-blue gradient */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 15px;
+    /* Retained enhanced shadow for depth */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(255, 255, 255, 0.5) inset; /* Inner glow effect */
     overflow: hidden;
-}
-
-.patient-photo-lg-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-}
-
-.patient-email {
-    font-size: 1.1em;
-    color: #555;
+    color: white;
+    font-size: 2.2em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .details-section {
     background-color: white;
-    padding: 30px;
+    padding: 25px;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     box-sizing: border-box;
 }
 
 .assessments-grid, .sessions-list {
     display: grid;
-    gap: 20px;
+    gap: 15px;
 }
 
 .assessments-grid {
@@ -102,20 +106,20 @@
     background-color: #f8fcfb;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
-    padding: 20px;
+    padding: 18px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
 }
 
 .assessment-card h3, .session-card h3 {
     color: #33776b;
-    font-size: 1.3em;
-    margin-bottom: 15px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
     text-align: left;
 }
 
 .assessment-card p, .session-card p {
-    font-size: 0.95em;
-    margin-bottom: 5px;
+    font-size: 0.9em;
+    margin-bottom: 4px;
     color: #444;
 }
 
@@ -124,28 +128,50 @@
 }
 
 .assessment-details {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #666;
     background-color: #f0f4f3;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
-    margin-top: 10px;
+    margin-top: 8px;
     white-space: pre-wrap;
     word-break: break-all;
 }
 
-/* Style for the recommendations list within assessment-details */
 .assessment-details ul {
-    list-style-type: disc; /* Use disc bullets */
-    padding-left: 20px; /* Indent the list */
-    margin-top: 10px;
+    list-style-type: disc;
+    padding-left: 18px;
+    margin-top: 8px;
 }
 
 .assessment-details li {
-    margin-bottom: 5px;
-    line-height: 1.4;
+    margin-bottom: 3px;
+    line-height: 1.3;
 }
 
+.session-detail-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.session-detail-item strong {
+    flex-shrink: 0;
+    margin-right: 6px;
+    color: #194b45;
+}
+
+.session-detail-item .detail-value {
+    flex-grow: 1;
+    background-color: #e0f2f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    word-break: break-word;
+}
+
+/* Status colors - kept as is for functional clarity */
 .status {
     font-weight: bold;
     padding: 3px 8px;
@@ -163,7 +189,7 @@
     font-style: italic;
     color: #777;
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     background-color: #f0f4f8;
     border-radius: 8px;
     border: 1px solid #dbe4eb;
@@ -172,23 +198,36 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .patient-session-details-container {
-        padding: 20px 15px;
-        margin-top: 20px;
-        border-radius: 15px;
+        padding: 15px 10px;
+        margin-top: 15px;
+        border-radius: 10px;
     }
 
     .patient-session-details-container h1 {
-        font-size: 2em;
+        font-size: 2.2em; /* Adjusted for smaller screens */
+        margin-left: 15px;
     }
 
     .patient-session-details-container h2 {
-        font-size: 1.6em;
-        margin-top: 30px;
+        font-size: 1.4em;
+        margin-top: 25px;
+    }
+
+    .patient-header {
+        padding-left: 0;
+    }
+
+    .patient-photo-lg, .patient-photo-lg-placeholder {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8em;
+        margin-right: 10px;
     }
 
     .details-section {
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
+        margin-bottom: 20px;
     }
 
     .assessments-grid {
@@ -197,5 +236,15 @@
 
     .assessment-card, .session-card {
         padding: 15px;
+    }
+
+    .session-detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .session-detail-item strong {
+        margin-right: 0;
+        margin-bottom: 5px;
     }
 }

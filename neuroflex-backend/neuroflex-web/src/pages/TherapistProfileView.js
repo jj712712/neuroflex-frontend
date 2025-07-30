@@ -1,7 +1,7 @@
 // src/components/TherapistProfileView.js
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, addDoc, serverTimestamp } from 'firebase/firestore'; // Added serverTimestamp
 import { auth, db } from '../firebaseConfig';
 import './TherapistProfileView.css';
 
@@ -72,8 +72,17 @@ const TherapistProfileView = () => {
     });
     const [formErrors, setFormErrors] = useState({}); // For form validation errors
 
+    // Helper function to get initials for placeholder
+    const getInitials = useCallback((fullName) => {
+        if (!fullName) return '';
+        const names = fullName.split(' ').filter(n => n); // Split by space and remove empty strings
+        if (names.length === 0) return '';
+        if (names.length === 1) return names[0].charAt(0).toUpperCase();
+        return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
+    }, []);
+
     // Helper function to generate time slots (24-hour format internally for logic)
-    const generateTimeSlots24Hr = (startTime, endTime, durationMinutes) => {
+    const generateTimeSlots24Hr = useCallback((startTime, endTime, durationMinutes) => {
         const slots = [];
         const [startHour, startMinute] = startTime.split(':').map(Number);
         const [endHour, endMinute] = endTime.split(':').map(Number);
@@ -91,16 +100,16 @@ const TherapistProfileView = () => {
             currentSlotTime.setMinutes(currentSlotTime.getMinutes() + durationMinutes);
         }
         return slots;
-    };
+    }, []); // No dependencies, as it's a pure function
 
     // Helper to format 24hr time to AM/PM for display
-    const formatTimeForDisplay = (time24hr) => {
+    const formatTimeForDisplay = useCallback((time24hr) => {
         if (!time24hr) return 'N/A';
         const [hour, minute] = time24hr.split(':').map(Number);
         const date = new Date();
         date.setHours(hour, minute, 0, 0);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, hourCycle: 'h12' });
-    };
+    }, []); // No dependencies, pure function
 
     // --- Effects for Data Fetching ---
     useEffect(() => {
@@ -135,11 +144,11 @@ const TherapistProfileView = () => {
                 setPatientData(null);
                 console.log("No patient logged in.");
             }
-            setLoading(false);
+            setLoading(false); // Set loading to false after auth state is determined and patient data fetched
         });
 
         return () => unsubscribeAuth();
-    }, []);
+    }, []); // 'auth' and 'db' are stable references, no need to include in dependencies
 
     const fetchTherapistProfile = useCallback(async () => {
         if (!therapistId) {
@@ -160,10 +169,10 @@ const TherapistProfileView = () => {
             console.error("Error fetching therapist profile:", err);
             setError("Failed to load therapist profile. Please try again.");
         }
-    }, [therapistId]);
+    }, [therapistId]); // 'db' is stable
 
     const fetchTherapistBookingsAndPatientStatus = useCallback(async () => {
-        if (!therapistId || !patientUid) {
+        if (!therapistId) { // patientUid might not be available yet, but therapistId is essential
             return;
         }
         try {
@@ -173,36 +182,41 @@ const TherapistProfileView = () => {
             const bookingsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setTherapistBookings(bookingsData);
 
-            const patientAnyActiveBookingQuery = query(
-                bookingsRef,
-                where('therapistId', '==', therapistId),
-                where('patientId', '==', patientUid),
-                where('status', 'in', ['pending', 'accepted'])
-            );
-            const patientAnyActiveBookingSnap = await getDocs(patientAnyActiveBookingQuery);
-            if (patientAnyActiveBookingSnap.docs.length > 0) {
-                setPatientExistingBooking(patientAnyActiveBookingSnap.docs[0].data().status);
+            // Check if the current patient has ANY active booking with this therapist
+            if (patientUid) {
+                const patientAnyActiveBookingQuery = query(
+                    bookingsRef,
+                    where('therapistId', '==', therapistId),
+                    where('patientId', '==', patientUid),
+                    where('status', 'in', ['pending', 'accepted'])
+                );
+                const patientAnyActiveBookingSnap = await getDocs(patientAnyActiveBookingQuery);
+                if (patientAnyActiveBookingSnap.docs.length > 0) {
+                    setPatientExistingBooking(patientAnyActiveBookingSnap.docs[0].data().status);
+                } else {
+                    setPatientExistingBooking(null);
+                }
             } else {
-                setPatientExistingBooking(null);
+                setPatientExistingBooking(null); // No patient logged in, so no existing booking
             }
         } catch (err) {
             console.error("Error fetching bookings:", err);
         }
-    }, [therapistId, patientUid]);
+    }, [therapistId, patientUid]); // 'db' is stable
 
     useEffect(() => {
         fetchTherapistProfile();
     }, [fetchTherapistProfile]);
 
     useEffect(() => {
-        if (therapistId && patientUid) {
+        // Only fetch bookings if therapistId is available. patientUid can be null (not logged in)
+        if (therapistId) {
             fetchTherapistBookingsAndPatientStatus();
-        } else if (!patientUid) {
+        } else {
             setPatientExistingBooking(null);
             setTherapistBookings([]);
         }
-    }, [therapistId, patientUid, fetchTherapistBookingsAndPatientStatus]);
-
+    }, [therapistId, patientUid, fetchTherapistBookingsAndPatientStatus]); // Added patientUid to trigger re-fetch when patient logs in/out
 
     const availableDates = useMemo(() => {
         const dates = [];
@@ -210,7 +224,7 @@ const TherapistProfileView = () => {
         now.setSeconds(0, 0);
 
         if (therapist?.availabilitySchedule) {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 30; i++) { // Look 30 days into the future
                 const date = new Date(now);
                 date.setDate(now.getDate() + i);
                 date.setHours(0, 0, 0, 0);
@@ -237,16 +251,19 @@ const TherapistProfileView = () => {
             }
         }
         return dates;
-    }, [therapist?.availabilitySchedule, therapist?.sessionDuration]);
+    }, [therapist?.availabilitySchedule, therapist?.sessionDuration, generateTimeSlots24Hr]);
 
     useEffect(() => {
         if (therapist && availableDates.length > 0) {
+            // Ensure selectedDate is one of the available future dates
             const isSelectedDateAvailableAndFuture = availableDates.some(d => d.toDateString() === selectedDate.toDateString());
 
-            if (!isSelectedDateAvailableAndFuture || (selectedDate.toDateString() === new Date().toDateString() && availableDates[0].toDateString() !== new Date().toDateString())) {
+            if (!isSelectedDateAvailableAndFuture) {
+                // If current selectedDate is not available or is in the past, set to the first available future date
                 setSelectedDate(availableDates[0]);
             }
         } else if (therapist && availableDates.length === 0) {
+            // If no available dates, set selectedDate to today (or null if preferred)
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             setSelectedDate(today);
@@ -368,7 +385,7 @@ const TherapistProfileView = () => {
         }
     };
 
-    const validateForm = () => {
+    const validateForm = useCallback(() => { // Wrapped in useCallback
         const errors = {};
         if (!bookingForm.fullName.trim()) errors.fullName = 'Full Name is required.';
         if (!bookingForm.email.trim()) {
@@ -384,16 +401,16 @@ const TherapistProfileView = () => {
         if (!bookingForm.reasonForBooking.trim()) errors.reasonForBooking = 'Reason for booking is required.';
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
-    };
+    }, [bookingForm]); // Dependency on bookingForm
 
     // Handle patient details form submission
-    const handlePatientDetailsSubmit = () => {
+    const handlePatientDetailsSubmit = useCallback(() => { // Wrapped in useCallback
         if (!validateForm()) {
             return;
         }
         setShowPatientDetailsFormModal(false); // Close details form
         setShowBookingConfirmationModal(true); // Open confirmation modal
-    };
+    }, [validateForm]); // Dependency on validateForm
 
     const handleConfirmBooking = async () => {
         // Essential checks just before final submission. These should generally pass if the flow is followed.
@@ -438,25 +455,6 @@ const TherapistProfileView = () => {
                 return;
             }
 
-            // Re-check if THIS SPECIFIC SLOT is already pending/accepted by the CURRENT PATIENT.
-            const mySpecificSlotBookingAtConfirmation = therapistBookings.find(booking =>
-                booking.slotDate === formattedDate &&
-                booking.slotTime === slotTime24hr &&
-                booking.patientId === patientUid &&
-                ['pending', 'accepted'].includes(booking.status)
-            );
-
-            if (mySpecificSlotBookingAtConfirmation) {
-                setMyExistingBookingMessage(
-                    `You already have a ${mySpecificSlotBookingAtConfirmation.status} request for this specific time slot. ` +
-                    `Please review your 'My Bookings' page for more information.`
-                );
-                setShowMyExistingBookingPopup(true);
-                setShowBookingConfirmationModal(false); // Close confirmation if this conflict is found
-                setLoading(false);
-                return;
-            }
-
             // Also re-check if any other patient booked this slot in the meantime
             const isAlreadyBookedByOthersAtConfirmation = therapistBookings.some(booking =>
                 booking.slotDate === formattedDate &&
@@ -488,7 +486,7 @@ const TherapistProfileView = () => {
                 slotDate: formattedDate,
                 slotTime: slotTime24hr,
                 status: 'pending',
-                bookingTimestamp: new Date(),
+                bookingTimestamp: serverTimestamp(), // Changed to serverTimestamp()
                 clinicalLocation: therapist.clinicalLocation || null,
             };
 
@@ -545,7 +543,7 @@ const TherapistProfileView = () => {
                     <img src={therapist.profilePhotoUrl} alt={`${therapist.fullName}'s profile`} className="profile-photo-lg" />
                 ) : (
                     <div className="profile-photo-lg-placeholder">
-                        <img src={process.env.PUBLIC_URL + '/default-avatar.png'} alt="Default Avatar" />
+                        {getInitials(therapist.fullName)} {/* Use getInitials here */}
                     </div>
                 )}
                 <h1>{therapist.fullName || 'Therapist Name'}</h1>
@@ -595,7 +593,7 @@ const TherapistProfileView = () => {
                                     id="date-select"
                                     value={selectedDate.toISOString().split('T')[0]}
                                     onChange={handleDateSelect}
-                                    disabled={!patientUid || patientExistingBooking}
+                                    disabled={!patientUid || patientExistingBooking} // Disable if not logged in or has existing booking
                                 >
                                     {availableDates.map((date, index) => (
                                         <option key={index} value={date.toISOString().split('T')[0]}>
@@ -631,31 +629,12 @@ const TherapistProfileView = () => {
                                 let slotText = formatTimeForDisplay(time24hr);
                                 let isDisabled = false;
 
-                                if (bookingForSlot) {
-                                    if (bookingForSlot.patientId === patientUid) {
-                                        if (bookingForSlot.status === 'pending') {
-                                            slotClassName += ' slot-pending-by-me';
-                                            slotText = `${formatTimeForDisplay(time24hr)} (My Request Pending)`;
-                                        } else if (bookingForSlot.status === 'accepted') {
-                                            slotClassName += ' slot-booked-by-me';
-                                            slotText = `${formatTimeForDisplay(time24hr)} (My Session Booked)`;
-                                        } else if (['completed', 'cancelled', 'rejected'].includes(bookingForSlot.status)) {
-                                            slotClassName += ' slot-past';
-                                            slotText = `${formatTimeForDisplay(time24hr)} (Inactive)`;
-                                        }
-                                        isDisabled = true;
-                                    } else {
-                                        slotClassName += ' slot-taken';
-                                        slotText = `${formatTimeForDisplay(time24hr)} (Taken)`;
-                                        isDisabled = true;
-                                    }
-                                }
-
                                 const now = new Date();
                                 const [slotHour, slotMinute] = time24hr.split(':').map(Number);
                                 const currentSlotFullDateTime = new Date(selectedDate);
                                 currentSlotFullDateTime.setHours(slotHour, slotMinute, 0, 0);
 
+                                // 1. Check if the slot is in the past
                                 if (currentSlotFullDateTime.getTime() < now.getTime()) {
                                     isDisabled = true;
                                     slotClassName += ' slot-past';
@@ -663,11 +642,29 @@ const TherapistProfileView = () => {
                                         slotText = `${formatTimeForDisplay(time24hr)} (Past)`;
                                     }
                                 }
-
-                                // This visual disablement is secondary to the logic in handleSlotClick.
-                                // If handleSlotClick correctly prevents the form, this just provides visual cue.
-                                if (patientExistingBooking) {
+                                // 2. If patient already has ANY active booking with this therapist, disable ALL slots
+                                // This overrides other states if an overall booking exists
+                                else if (patientExistingBooking) {
                                     isDisabled = true;
+                                    slotClassName += ' slot-disabled-by-existing-booking';
+                                    slotText = `${formatTimeForDisplay(time24hr)} (Already Booked)`;
+                                }
+                                // 3. Check if this specific slot is booked/pending by anyone (including self)
+                                else if (bookingForSlot) {
+                                    if (bookingForSlot.patientId === patientUid) {
+                                        if (bookingForSlot.status === 'pending') {
+                                            slotClassName += ' slot-pending-by-me';
+                                            slotText = `${formatTimeForDisplay(time24hr)} (My Request Pending)`;
+                                        } else if (bookingForSlot.status === 'accepted') {
+                                            slotClassName += ' slot-booked-by-me';
+                                            slotText = `${formatTimeForDisplay(time24hr)} (My Session Booked)`;
+                                        }
+                                        isDisabled = true; // My own pending/accepted slot is also disabled for re-booking
+                                    } else {
+                                        slotClassName += ' slot-taken';
+                                        slotText = `${formatTimeForDisplay(time24hr)} (Taken)`;
+                                        isDisabled = true;
+                                    }
                                 }
 
                                 return (
@@ -675,7 +672,7 @@ const TherapistProfileView = () => {
                                         key={index}
                                         className={slotClassName}
                                         onClick={() => handleSlotClick(selectedDayOfWeek, time24hr)}
-                                        disabled={isDisabled || !patientUid}
+                                        disabled={isDisabled || !patientUid} // Disable if already booked/past, or if not logged in
                                         title={isDisabled ? "This slot is not available" : `Book session for ${selectedDayOfWeek}, ${formattedDate} at ${formatTimeForDisplay(time24hr)}`}
                                     >
                                         {slotText}

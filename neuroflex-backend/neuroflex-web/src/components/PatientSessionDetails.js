@@ -107,6 +107,16 @@ const PatientSessionDetails = () => {
         }
     }, [currentTherapistUid, patientId, fetchData]);
 
+    // Helper to get initials for placeholder
+    const getInitials = (fullName) => {
+        if (!fullName) return '';
+        const names = fullName.split(' ').filter(n => n); // Split by space and remove empty strings
+        if (names.length === 0) return '';
+        if (names.length === 1) return names[0].charAt(0).toUpperCase();
+        return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
+    };
+
+
     if (loading) {
         return <div className="patient-session-details-container">Loading patient session details...</div>;
     }
@@ -119,18 +129,21 @@ const PatientSessionDetails = () => {
         return <div className="patient-session-details-container">Patient not found or unauthorized access.</div>;
     }
 
+    const patientDisplayName = patient.fullName || patient.name || 'Patient Name';
+    const patientInitials = getInitials(patientDisplayName);
+
     return (
         <div className="patient-session-details-container">
             <div className="patient-header">
                 {patient.profilePhotoUrl ? (
-                    <img src={patient.profilePhotoUrl} alt={`${patient.fullName || patient.name}'s profile`} className="patient-photo-lg" />
+                    <img src={patient.profilePhotoUrl} alt={`${patientDisplayName}'s profile`} className="patient-photo-lg" />
                 ) : (
                     <div className="patient-photo-lg-placeholder">
-                        <img src={process.env.PUBLIC_URL + '/default-avatar.png'} alt="Default Avatar" />
+                        <span>{patientInitials}</span>
                     </div>
                 )}
-                <h1>{patient.fullName || patient.name || 'Patient Name'}</h1>
-                <p className="patient-email">{patient.email}</p>
+                <h1>{patientDisplayName}</h1>
+                {/* Removed: <p className="patient-email">{patient.email}</p> */}
             </div>
 
             <div className="details-section">
@@ -139,23 +152,19 @@ const PatientSessionDetails = () => {
                     <div className="assessments-grid">
                         {assessments.map(assessment => (
                             <div key={assessment.id} className="assessment-card">
-                                {/* Use primaryConcern for the assessment type/title */}
                                 <h3>{assessment.primaryConcern || 'Unnamed Assessment'}</h3>
-                                {/* Use performanceLevel for the score */}
                                 <p><strong>Performance Level:</strong> {assessment.performanceLevel || 'N/A'}</p>
-                                {/* Use createdAt for the date */}
                                 <p><strong>Date:</strong> {assessment.timestamp ? assessment.timestamp.toLocaleDateString() : 'N/A'}</p>
-                                <p className="assessment-details">
+                                <div className="assessment-details"> {/* Changed p to div for better styling control */}
                                     <strong>Recommendations:</strong>
-                                    {/* Display recommendations array as a list or joined string */}
                                     {assessment.recommendations && assessment.recommendations.length > 0 ? (
                                         <ul>
                                             {assessment.recommendations.map((rec, idx) => (
                                                 <li key={idx}>{rec}</li>
                                             ))}
                                         </ul>
-                                    ) : 'N/A'}
-                                </p>
+                                    ) : <p>N/A</p>}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -173,14 +182,14 @@ const PatientSessionDetails = () => {
                                 <div key={booking.id} className="session-card">
                                     <h3>Session on {booking.slotDate ? booking.slotDate.toLocaleDateString() : 'N/A'} at {formatTimeForDisplay(booking.slotTime)}</h3>
                                     <p><strong>Status:</strong> <span className={`status ${booking.status}`}>{booking.status}</span></p>
-                                    <p><strong>Problem Area:</strong> {booking.problemArea || 'N/A'}</p>
-                                    <p><strong>Reason for Booking:</strong> {booking.reasonForBooking || 'N/A'}</p>
+                                    <p className="session-detail-item"><strong>Problem Area:</strong> <span className="detail-value">{booking.problemArea || 'N/A'}</span></p>
+                                    <p className="session-detail-item"><strong>Reason for Booking:</strong> <span className="detail-value">{booking.reasonForBooking || 'N/A'}</span></p>
                                     <p><strong>Booking Date:</strong> {booking.bookingTimestamp ? booking.bookingTimestamp.toLocaleDateString() : 'N/A'}</p>
 
-                                    <p className="no-data-message">EEG session data is not integrated yet. (N/A)</p>
-                                    {/* Assuming therapistNotes and patientFeedback might be stored on the booking directly if no separate EEG session */}
-                                    <p><strong>Therapist Notes:</strong> {booking.therapistNotes || 'No notes available for this session.'}</p>
-                                    <p><strong>Patient Feedback:</strong> {booking.patientFeedback || 'No feedback available for this session.'}</p>
+                                    {/* Removed: <p className="no-data-message">EEG session data is not integrated yet. (N/A)</p> */}
+
+                                    <p className="session-detail-item"><strong>Therapist Notes:</strong> <span className="detail-value">{booking.therapistNotes || 'No notes available for this session.'}</span></p>
+                                    <p className="session-detail-item"><strong>Patient Feedback:</strong> <span className="detail-value">{booking.patientFeedback || 'No feedback available for this session.'}</span></p>
                                 </div>
                             );
                         })}

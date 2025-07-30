@@ -29,6 +29,8 @@ import SessionHistory from './components/SessionHistory';
 import SessionDetail from './components/SessionDetail';
 import MyBookings from './pages/MyBookings'; // Ensure this import is present
 import PatientSessionDetails from './components/PatientSessionDetails'; // Import the new component
+import TherapistSessionOverview from './components/TherapistSessionOverview'; // Import the new component
+
 
 import './App.css';
 
@@ -72,6 +74,7 @@ const App = () => {
           <Route path="/therapist/profile/manage" element={<PrivateRoute requiredRole="therapist"><TherapistManageProfile /></PrivateRoute>} />
           <Route path="/therapist/patients" element={<PrivateRoute requiredRole="therapist"><TherapistPatientsList /></PrivateRoute>} />
           <Route path="/therapist/patient-session-details/:patientId" element={<PrivateRoute requiredRole="therapist"><PatientSessionDetails /></PrivateRoute>} />
+          <Route path="/therapist/session-overview" element={<PrivateRoute requiredRole="therapist"><TherapistSessionOverview /></PrivateRoute>} />
 
 
         </Routes>

@@ -1,7 +1,7 @@
-/* src/pages/TherapistProfileView.css */
+/* src/components/TherapistProfileView.css */
 
 .therapist-profile-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Preserving user's preferred font */
     min-height: calc(100vh - 120px); /* Adjust based on navbar/footer height */
     display: flex;
     flex-direction: column;
@@ -24,10 +24,16 @@
     margin-top: 50px;
     font-size: 1.2em;
     color: #555;
+    padding: 15px; /* Added padding for better appearance */
+    border-radius: 10px; /* Added border-radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .profile-error {
     color: #d9534f; /* Red for errors */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb; /* Light red border */
 }
 
 .profile-header {
@@ -68,20 +74,18 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #e0e0e0; /* Light gray background */
+    display: flex; /* Flexbox for centering initials */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
     margin-bottom: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Ensure image fits */
-}
-
-.profile-photo-lg-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7; /* Slightly faded placeholder */
+    overflow: hidden;
+    font-size: 3.5em; /* Larger initials */
+    color: #555; /* Darker color for initials */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Removed img specific styles as it's now a div with text */
 }
 
 
@@ -277,41 +281,50 @@
 .time-slot:disabled {
     cursor: not-allowed;
     opacity: 0.6; /* More distinct disabled state */
+    background-color: #cccccc; /* Default disabled background */
+    color: #666; /* Default disabled text color */
+    box-shadow: none;
 }
 
 /* Specific Slot Status Styles */
+.time-slot.slot-past {
+    background-color: #f0f0f0; /* Light gray for past slots */
+    border-color: #ddd;
+    color: #888;
+    text-decoration: line-through;
+}
+
 .time-slot.slot-taken {
-    background-color: #ffe6e6; /* Light red for taken slots */
+    background-color: #ffe6e6; /* Light red for slots taken by others */
     border-color: #ffb3b3;
     color: #a00;
     text-decoration: line-through;
     font-style: italic;
-    cursor: not-allowed;
-}
-
-.time-slot.slot-booked-by-me {
-    background-color: #e6ffe6; /* Light green for current patient's accepted slots */
-    border-color: #b3ffb3;
-    color: #0a0;
-    font-weight: bold;
-    cursor: not-allowed;
 }
 
 .time-slot.slot-pending-by-me {
-    background-color: #fffacd;
+    background-color: #fffacd; /* Light orange/yellow for my pending request */
     border-color: #fff37a;
     color: #8a6d00;
     font-style: italic;
-    cursor: not-allowed;
     animation: pulse 1.5s infinite alternate;
 }
 
-.time-slot.slot-past {
-    background-color: #f0f0f0;
-    border-color: #ddd;
-    color: #888;
-    text-decoration: line-through;
+.time-slot.slot-booked-by-me {
+    background-color: #e6ffe6; /* Light green for my accepted booking */
+    border-color: #b3ffb3;
+    color: #0a0;
+    font-weight: bold;
+}
+
+/* NEW: Style for when ALL slots are disabled due to existing booking */
+.time-slot.slot-disabled-by-existing-booking {
+    background-color: #b0b0b0; /* A distinct, slightly darker gray */
+    color: #f0f0f0; /* White text for contrast */
     cursor: not-allowed;
+    opacity: 0.8;
+    border-color: #909090; /* Darker border */
+    text-decoration: none; /* Ensure no line-through unless it's also past/taken */
 }
 
 .no-slots {
